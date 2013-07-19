@@ -25,6 +25,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E0EACA5179961B30004626A /* pin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pin.h; sourceTree = "<group>"; };
+		2E0EACA6179962D60004626A /* gate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gate.h; sourceTree = "<group>"; };
+		2E0EACA7179962ED0004626A /* cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell.h; sourceTree = "<group>"; };
+		2E0EACA8179962FE0004626A /* module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = module.h; sourceTree = "<group>"; };
+		2E0EACA91799630F0004626A /* design.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = design.h; sourceTree = "<group>"; };
+		2E0EACAA179963D10004626A /* typemu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typemu.h; sourceTree = "<group>"; };
+		2E0EACAB17996CD60004626A /* library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 		2E37EC631798E55F002EC9DF /* OpenAccessPODEM */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenAccessPODEM; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E37EC661798E55F002EC9DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2E37EC681798E560002EC9DF /* OpenAccessPODEM.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenAccessPODEM.1; sourceTree = "<group>"; };
@@ -60,7 +67,14 @@
 		2E37EC651798E55F002EC9DF /* OpenAccessPODEM */ = {
 			isa = PBXGroup;
 			children = (
+				2E0EACAA179963D10004626A /* typemu.h */,
 				2E37EC661798E55F002EC9DF /* main.cpp */,
+				2E0EACA5179961B30004626A /* pin.h */,
+				2E0EACA6179962D60004626A /* gate.h */,
+				2E0EACA7179962ED0004626A /* cell.h */,
+				2E0EACA8179962FE0004626A /* module.h */,
+				2E0EACA91799630F0004626A /* design.h */,
+				2E0EACAB17996CD60004626A /* library.h */,
 				2E37EC681798E560002EC9DF /* OpenAccessPODEM.1 */,
 			);
 			path = OpenAccessPODEM;
@@ -216,6 +230,7 @@
 				2E37EC6E1798E560002EC9DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
