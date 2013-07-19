@@ -8,13 +8,13 @@
 
 #ifndef OpenAccessPODEM_pin_h
 #define OpenAccessPODEM_pin_h
-
+#include "typemu.h"
 using namespace std;
 
 class PIN {
 private:
     string Name;
-    
+    VALUE Value;
 public:
     PIN(){
         

@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "design.h"
+#include "library.h"
 int main(int argc, const char * argv[])
 {
 

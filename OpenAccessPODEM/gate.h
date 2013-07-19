@@ -9,6 +9,17 @@
 #ifndef OpenAccessPODEM_gate_h
 #define OpenAccessPODEM_gate_h
 #include "pin.h"
-
+#include <vector>
+//GATE has a PIN. (GATE is not a PIN.)
+class GATE {
+private:
+    PIN* Pin;
+    GATEFUNC Func;
+    vector<GATE*> InputList;
+    vector<GATE*> OutputList;
+    
+public:
+    
+};
 
 #endif
