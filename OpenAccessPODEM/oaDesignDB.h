@@ -10,8 +10,9 @@
 #define OpenAccessPODEM_oaDesignDB_h
 
 namespace oa {
-    class oaDesign;
-    class oaLib;
+    class oaDesign{};
+    class oaLib{};
+    class oaNativeNS{};
 }
 
 #endif
