@@ -10,6 +10,8 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include "design.h"
+#include "OA_OpenDesign.h"
 using namespace std;
 
 
@@ -37,6 +39,9 @@ vector<string> ConfigFileParser(string FileName) {
     return OA_DesignParameter;
 }
 
-void FirstCircuitParser(vector<string> OA_DesignParameter) {
 
+void FirstCircuitParser(vector<string> OA_DesignParameter) {
+    OA_openDesign oa_design=oa_design.getDesign(OA_DesignParameter[0], OA_DesignParameter[1], OA_DesignParameter[2], OA_DesignParameter[3]);
+    vector<OA_GATE*> design=oa_design.getDesignStructure();
+    
 }
