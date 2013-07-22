@@ -1,18 +1,26 @@
 #include "oaDesignDB.h"
 #include "OA_LibraryPath.h"
-#include "gate.h"
+#include <string>
+#include <vector>
+using namespace std;
 //Design Pattern: Simple Factory
 using namespace oa;
 
+struct OA_GATE {
+    string Name;
+    OA_GATE(string n):Name(n){}
+};
+
 class OA_openDesign
 {
-  private:  typedef GATE OA_GATE;
   public:
     //the only way to touch constructor
     OA_openDesign getDesign(string libPath,string library,string cellName,string ViewName);
     //the only way to dump design
     void dumpModule();
-    vector<OA_GATE*> getDesignStructure();
+    vector<OA_GATE*> getDesignStructure() {
+        return m_designStructure;
+    }
     
     ~OA_openDesign();
   private:
