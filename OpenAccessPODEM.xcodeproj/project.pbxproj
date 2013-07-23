@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0EACAE17998CF70004626A /* GetLongOpt.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EACAC17998CF70004626A /* GetLongOpt.cc */; };
+		2E0EACB017998F970004626A /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EACAF17998F970004626A /* parser.cpp */; };
+		2E0EACB4179992F00004626A /* OA_OpenDesign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E0EACB2179992F00004626A /* OA_OpenDesign.cpp */; };
 		2E37EC671798E55F002EC9DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E37EC661798E55F002EC9DF /* main.cpp */; };
 		2E37EC691798E560002EC9DF /* OpenAccessPODEM.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2E37EC681798E560002EC9DF /* OpenAccessPODEM.1 */; };
 /* End PBXBuildFile section */
@@ -32,6 +35,13 @@
 		2E0EACA91799630F0004626A /* design.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = design.h; sourceTree = "<group>"; };
 		2E0EACAA179963D10004626A /* typemu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typemu.h; sourceTree = "<group>"; };
 		2E0EACAB17996CD60004626A /* library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		2E0EACAC17998CF70004626A /* GetLongOpt.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetLongOpt.cc; sourceTree = "<group>"; };
+		2E0EACAD17998CF70004626A /* GetLongOpt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetLongOpt.h; sourceTree = "<group>"; };
+		2E0EACAF17998F970004626A /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
+		2E0EACB1179992F00004626A /* OA_LibraryPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OA_LibraryPath.h; sourceTree = "<group>"; };
+		2E0EACB2179992F00004626A /* OA_OpenDesign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OA_OpenDesign.cpp; sourceTree = "<group>"; };
+		2E0EACB3179992F00004626A /* OA_OpenDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OA_OpenDesign.h; sourceTree = "<group>"; };
+		2E0EACB71799951E0004626A /* oaDesignDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oaDesignDB.h; sourceTree = "<group>"; };
 		2E37EC631798E55F002EC9DF /* OpenAccessPODEM */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenAccessPODEM; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E37EC661798E55F002EC9DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2E37EC681798E560002EC9DF /* OpenAccessPODEM.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenAccessPODEM.1; sourceTree = "<group>"; };
@@ -48,6 +58,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E0EACB5179994030004626A /* OpenAccess */ = {
+			isa = PBXGroup;
+			children = (
+				2E0EACB1179992F00004626A /* OA_LibraryPath.h */,
+				2E0EACB2179992F00004626A /* OA_OpenDesign.cpp */,
+				2E0EACB6179994F70004626A /* OpenAccess define */,
+			);
+			name = OpenAccess;
+			sourceTree = "<group>";
+		};
+		2E0EACB6179994F70004626A /* OpenAccess define */ = {
+			isa = PBXGroup;
+			children = (
+				2E0EACB71799951E0004626A /* oaDesignDB.h */,
+			);
+			name = "OpenAccess define";
+			sourceTree = "<group>";
+		};
 		2E37EC5A1798E55F002EC9DF = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +103,11 @@
 				2E0EACA8179962FE0004626A /* module.h */,
 				2E0EACA91799630F0004626A /* design.h */,
 				2E0EACAB17996CD60004626A /* library.h */,
+				2E0EACAC17998CF70004626A /* GetLongOpt.cc */,
+				2E0EACAD17998CF70004626A /* GetLongOpt.h */,
+				2E0EACAF17998F970004626A /* parser.cpp */,
+				2E0EACB3179992F00004626A /* OA_OpenDesign.h */,
+				2E0EACB5179994030004626A /* OpenAccess */,
 				2E37EC681798E560002EC9DF /* OpenAccessPODEM.1 */,
 			);
 			path = OpenAccessPODEM;
@@ -132,6 +165,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E37EC671798E55F002EC9DF /* main.cpp in Sources */,
+				2E0EACAE17998CF70004626A /* GetLongOpt.cc in Sources */,
+				2E0EACB017998F970004626A /* parser.cpp in Sources */,
+				2E0EACB4179992F00004626A /* OA_OpenDesign.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
