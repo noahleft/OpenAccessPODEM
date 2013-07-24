@@ -49,63 +49,69 @@ void OA_openDesign::loadDesign(string libPath,string library,string cellName,str
 }
 
 void OA_openDesign::dumpModule(){
-//    oaModule *module = m_design->getTopModule();
-//    oaString stringBuf;
-//    module->getName(ns,stringBuf);
-//    cout<<stringBuf<<endl;
-//    cout<<"Print sub module header"<<endl;
-//    oaIter<oaModModuleInstHeader> mHeaderIter(module->getModuleInstHeaders());
-//    while(oaModModuleInstHeader *mHeaderPtr = mHeaderIter.getNext()){
-//        mHeaderPtr->getName(ns,stringBuf);
-//        cout<<stringBuf<<endl;
-//    }
-//    cout<<"Print Module Instant"<<endl;
-//    oaIter<oaModInst> mInstIter(module->getInsts());
-//    while(oaModInst *mInstPtr = mInstIter.getNext()){
-//        mInstPtr->getName(ns,stringBuf);
-//        cout<<stringBuf<<endl;
-//        cout<<"Print Module Instant terminal name"<<endl;
-//        oaIter<oaModInstTerm> mInstTermIter(mInstPtr->getInstTerms());
-//        while(oaModInstTerm *mInstTermPtr = mInstTermIter.getNext()){
-//            mInstTermPtr->getTermName(ns,stringBuf);
-//            cout<<"    "<<stringBuf;
-//            mInstTermPtr->getNet()->getName(ns,stringBuf);
-//            oaSigType mSigType=mInstTermPtr->getNet()->getSigType();
-//            cout<<"    Net: "<<stringBuf;
-//            cout<<"    Type: "<<mSigType;
-//            cout<<endl;
-//        }
-//        cout<<"#############################################"<<endl;
-//    }
-//    cout<<"_________________SUBMODULE_____________"<<endl;
-//    oaIter<oaModule> mModuleIter(m_design->getModules());
-//    while(module=mModuleIter.getNext()) {
-//        if(module== m_design->getTopModule())continue;
-//        module->getName(ns,stringBuf);
-//        cout<<stringBuf<<endl;
-//        cout<<"Print sub module header"<<endl;
-//        oaIter<oaModModuleInstHeader> mHeaderIter(module->getModuleInstHeaders());
-//        while(oaModModuleInstHeader *mHeaderPtr = mHeaderIter.getNext()){
-//          mHeaderPtr->getName(ns,stringBuf);
-//          cout<<stringBuf<<endl;
-//        }
-//        cout<<"Print Module Instant"<<endl;
-//        oaIter<oaModInst> mInstIter(module->getInsts());
-//        while(oaModInst *mInstPtr = mInstIter.getNext()){
-//          mInstPtr->getName(ns,stringBuf);
-//          cout<<stringBuf<<endl;
-//          cout<<"Print Module Instant terminal name"<<endl;
-//          oaIter<oaModInstTerm> mInstTermIter(mInstPtr->getInstTerms());
-//          while(oaModInstTerm *mInstTermPtr = mInstTermIter.getNext()){
-//            mInstTermPtr->getTermName(ns,stringBuf);
-//            cout<<"    "<<stringBuf;
-//            mInstTermPtr->getNet()->getName(ns,stringBuf);
-//            cout<<"    Net: "<<stringBuf;
-//            cout<<endl;
-//          }
-//          cout<<"#############################################"<<endl;
-//        }
-//    }
+/*    oaModule *module = m_design->getTopModule();
+    oaString stringBuf;
+    module->getName(ns,stringBuf);
+    cout<<stringBuf<<endl;
+    cout<<"Print sub module header"<<endl;
+    oaIter<oaModModuleInstHeader> mHeaderIter(module->getModuleInstHeaders());
+    while(oaModModuleInstHeader *mHeaderPtr = mHeaderIter.getNext()){
+        mHeaderPtr->getName(ns,stringBuf);
+        cout<<stringBuf<<endl;
+    }
+    cout<<"Print Module Instant"<<endl;
+    oaIter<oaModInst> mInstIter(module->getInsts());
+    while(oaModInst *mInstPtr = mInstIter.getNext()){
+        mInstPtr->getName(ns,stringBuf);
+        cout<<stringBuf<<endl;
+        oaModule* tmpModule=mInstPtr->getMasterModule();
+        tmpModule->getName(ns,stringBuf);
+        cout<<stringBuf<<endl;
+        cout<<"Print Module Instant terminal name"<<endl;
+        oaIter<oaModInstTerm> mInstTermIter(mInstPtr->getInstTerms());
+        while(oaModInstTerm *mInstTermPtr = mInstTermIter.getNext()){
+            mInstTermPtr->getTermName(ns,stringBuf);
+            cout<<"    "<<stringBuf;
+            mInstTermPtr->getNet()->getName(ns,stringBuf);
+            oaSigType mSigType=mInstTermPtr->getNet()->getSigType();
+            cout<<"    Net: "<<stringBuf;
+            cout<<"    Type: "<<mSigType;
+            cout<<endl;
+        }
+        cout<<"#############################################"<<endl;
+    }
+    cout<<"_________________SUBMODULE_____________"<<endl;
+    oaIter<oaModule> mModuleIter(m_design->getModules());
+    while(module=mModuleIter.getNext()) {
+        if(module== m_design->getTopModule())continue;
+        module->getName(ns,stringBuf);
+        cout<<stringBuf<<endl;
+        cout<<"Print sub module header"<<endl;
+        oaIter<oaModModuleInstHeader> mHeaderIter(module->getModuleInstHeaders());
+        while(oaModModuleInstHeader *mHeaderPtr = mHeaderIter.getNext()){
+            mHeaderPtr->getName(ns,stringBuf);
+            cout<<stringBuf<<endl;
+        }
+        cout<<"Print Module Instant"<<endl;
+        oaIter<oaModInst> mInstIter(module->getInsts());
+        while(oaModInst *mInstPtr = mInstIter.getNext()){
+            mInstPtr->getName(ns,stringBuf);
+            cout<<stringBuf<<endl;
+            oaModule* tmpModule=mInstPtr->getMasterModule();
+            tmpModule->getName(ns,stringBuf);
+            cout<<stringBuf<<endl;
+            cout<<"Print Module Instant terminal name"<<endl;
+            oaIter<oaModInstTerm> mInstTermIter(mInstPtr->getInstTerms());
+            while(oaModInstTerm *mInstTermPtr = mInstTermIter.getNext()){
+                mInstTermPtr->getTermName(ns,stringBuf);
+                cout<<"    "<<stringBuf;
+                mInstTermPtr->getNet()->getName(ns,stringBuf);
+                cout<<"    Net: "<<stringBuf;
+                cout<<endl;
+            }
+            cout<<"#############################################"<<endl;
+        }
+    }*/
 }
 
 OA_openDesign::~OA_openDesign(){
