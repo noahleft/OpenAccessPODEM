@@ -13,7 +13,11 @@ using namespace std;
 
 struct OA_CELL {
     string Name;
+    string Std_Name;
+    bool IsModule;
     vector<pair<string, string> > NetList;
+    
+    OA_CELL(string n,string std_n):Name(n),Std_Name(std_n),IsModule(false){}
 };
 
 struct OA_MODULE {
