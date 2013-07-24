@@ -115,15 +115,13 @@ void OA_openDesign::dumpModule(){
 }
 
 OA_openDesign::~OA_openDesign(){
-    for(unsigned i=0;i<m_designStructure.size();i++){
-        delete m_designStructure[i];
-        m_designStructure[i]=NULL;
-    }
+    delete m_designStructure;
+    m_designStructure=NULL;
 }
 
 void OA_openDesign::constructDesign(){
-    OA_GATE* gate;
-    gate=new OA_GATE("OA_test");
-    m_designStructure.push_back(gate);
+//    OA_GATE* gate;
+//    gate=new OA_GATE("OA_test");
+//    m_designStructure.push_back(gate);
 }
 
