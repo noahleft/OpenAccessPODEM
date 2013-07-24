@@ -42,6 +42,6 @@ vector<string> ConfigFileParser(string FileName) {
 
 void FirstCircuitParser(vector<string> OA_DesignParameter) {
     OA_openDesign oa_design=oa_design.getDesign(OA_DesignParameter[0], OA_DesignParameter[1], OA_DesignParameter[2], OA_DesignParameter[3]);
-    vector<OA_GATE*> design=oa_design.getDesignStructure();
+    OA_DESIGN* design=oa_design.getDesignStructure();
     
 }

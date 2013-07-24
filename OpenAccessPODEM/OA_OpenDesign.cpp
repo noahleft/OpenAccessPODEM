@@ -120,8 +120,145 @@ OA_openDesign::~OA_openDesign(){
 }
 
 void OA_openDesign::constructDesign(){
-//    OA_GATE* gate;
-//    gate=new OA_GATE("OA_test");
-//    m_designStructure.push_back(gate);
+    OA_DESIGN* design=new OA_DESIGN("s27");
+    m_designStructure=design;
+    {
+        OA_MODULE* module=new OA_MODULE("s27");
+        design->TopModule=module;
+        design->ModuleList.push_back(module);
+        {
+            OA_CELL* cell=new OA_CELL("U17","NR2M0N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","G1"));
+            cell->NetList.push_back(pair<string,string>("B","G7"));
+            cell->NetList.push_back(pair<string,string>("Z","n9"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("U16","CKINVM1N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","G0"));
+            cell->NetList.push_back(pair<string,string>("Z","n10"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("U15","NR2M0N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","n1"));
+            cell->NetList.push_back(pair<string,string>("B","n10"));
+            cell->NetList.push_back(pair<string,string>("Z","G10"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("U14","NR2M0N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","G2"));
+            cell->NetList.push_back(pair<string,string>("B","n9"));
+            cell->NetList.push_back(pair<string,string>("Z","G13"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("U13","CKINVM1N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","n1"));
+            cell->NetList.push_back(pair<string,string>("Z","G17"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("U12","AOI22M2N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A1","G3"));
+            cell->NetList.push_back(pair<string,string>("A2","n9"));
+            cell->NetList.push_back(pair<string,string>("B1","G6"));
+            cell->NetList.push_back(pair<string,string>("B2","n10"));
+            cell->NetList.push_back(pair<string,string>("Z","n11"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("U11","NR2M2N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","n11"));
+            cell->NetList.push_back(pair<string,string>("B","G5"));
+            cell->NetList.push_back(pair<string,string>("Z","n1"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("DFF_2","dff_test_1");
+            module->CellList.push_back(cell);
+            cell->IsModule=true;
+            cell->NetList.push_back(pair<string,string>("test_se","test_se"));
+            cell->NetList.push_back(pair<string,string>("test_si","G6"));
+            cell->NetList.push_back(pair<string,string>("D","G13"));
+            cell->NetList.push_back(pair<string,string>("Q","G7"));
+            cell->NetList.push_back(pair<string,string>("CK","CK__L2_N0"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("DFF_1","dff_test_0");
+            module->CellList.push_back(cell);
+            cell->IsModule=true;
+            cell->NetList.push_back(pair<string,string>("test_se","test_se"));
+            cell->NetList.push_back(pair<string,string>("test_si","G5"));
+            cell->NetList.push_back(pair<string,string>("D","n1"));
+            cell->NetList.push_back(pair<string,string>("Q","G6"));
+            cell->NetList.push_back(pair<string,string>("CK","CK__L2_N0"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("DFF_0","dff_test_2");
+            module->CellList.push_back(cell);
+            cell->IsModule=true;
+            cell->NetList.push_back(pair<string,string>("test_se","test_se"));
+            cell->NetList.push_back(pair<string,string>("test_si","test_si"));
+            cell->NetList.push_back(pair<string,string>("D","G10"));
+            cell->NetList.push_back(pair<string,string>("Q","G5"));
+            cell->NetList.push_back(pair<string,string>("CK","CK__L2_N0"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("CK__L1_I0","CKINVM32N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","CK"));
+            cell->NetList.push_back(pair<string,string>("Z","CK__L1_N0"));
+        }
+        {
+            OA_CELL* cell=new OA_CELL("CK__L2_I0","CKINVM12N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("A","CK__L1_N0"));
+            cell->NetList.push_back(pair<string,string>("Z","CK__L2_N0"));
+        }
+    }
+    {
+        OA_MODULE* module=new OA_MODULE("dff_test_2");
+        design->TopModule->SubModuleList.push_back(module);
+        design->ModuleList.push_back(module);
+        {
+            OA_CELL* cell=new OA_CELL("Q_reg","LSDFQM2N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("CK","CK"));
+            cell->NetList.push_back(pair<string,string>("D","D"));
+            cell->NetList.push_back(pair<string,string>("Q","Q"));
+            cell->NetList.push_back(pair<string,string>("SD","test_si"));
+            cell->NetList.push_back(pair<string,string>("SE","test_se"));
+        }
+    }
+    {
+        OA_MODULE* module=new OA_MODULE("dff_test_0");
+        design->TopModule->SubModuleList.push_back(module);
+        design->ModuleList.push_back(module);
+        {
+            OA_CELL* cell=new OA_CELL("Q_reg","LSDFQM2N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("CK","CK"));
+            cell->NetList.push_back(pair<string,string>("D","D"));
+            cell->NetList.push_back(pair<string,string>("Q","Q"));
+            cell->NetList.push_back(pair<string,string>("SD","test_si"));
+            cell->NetList.push_back(pair<string,string>("SE","test_se"));
+        }
+    }
+    {
+        OA_MODULE* module=new OA_MODULE("dff_test_1");
+        design->TopModule->SubModuleList.push_back(module);
+        design->ModuleList.push_back(module);
+        {
+            OA_CELL* cell=new OA_CELL("Q_reg","LSDFQM2N");
+            module->CellList.push_back(cell);
+            cell->NetList.push_back(pair<string,string>("CK","CK"));
+            cell->NetList.push_back(pair<string,string>("D","D"));
+            cell->NetList.push_back(pair<string,string>("Q","Q"));
+            cell->NetList.push_back(pair<string,string>("SD","test_si"));
+            cell->NetList.push_back(pair<string,string>("SE","test_se"));
+        }
+    }
 }
 
