@@ -8,7 +8,7 @@
 
 #ifndef OpenAccessPODEM_design_h
 #define OpenAccessPODEM_design_h
-#include "module.h"
+#include "library.h"
 
 class DESIGN {
 private:

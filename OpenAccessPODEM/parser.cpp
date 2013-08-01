@@ -10,6 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <map>
 #include "design.h"
 #include "OA_OpenDesign.h"
 using namespace std;
@@ -28,20 +29,52 @@ vector<string> ConfigFileParser(string FileName) {
         }
         OA_DesignParameter.push_back(str);
         num++;
-        if (num==4) {
+        if (num==5) {
             break;
         }
     }
-    if (OA_DesignParameter.size()!=4) {
+    if (OA_DesignParameter.size()!=5) {
         cout<<"check config file format."<<endl;
         exit(-1);
     }
     return OA_DesignParameter;
 }
 
+map<string, std_CELL*> std_CELL_Map;
 
 void FirstCircuitParser(vector<string> OA_DesignParameter) {
     OA_openDesign oa_design=oa_design.getDesign(OA_DesignParameter[0], OA_DesignParameter[1], OA_DesignParameter[2], OA_DesignParameter[3]);
     OA_DESIGN* design=oa_design.getDesignStructure();
     
+    for (unsigned i=0; i<design->TopModule->CellList.size(); i++) {
+        std_CELL_Map[design->TopModule->CellList[i]->Std_Name]=NULL;
+    }
+    
+}
+
+void FirstLibraryParser(string LibraryPath) {
+    if (fopen(LibraryPath.c_str(), "r")==NULL) {
+        cout << "Can't open library file: " << LibraryPath << endl;
+        exit(-1);
+    }
+    fstream infile(LibraryPath.c_str(),ios::in);
+    
+    string str;
+    string::size_type pos;
+    while (!infile.eof()) {
+        getline(infile, str);
+        if ((pos=str.find("cell("))!=string::npos) {
+            str=str.substr(pos+5);
+            pos=str.find(')');
+            str=str.substr(0,pos);
+            if (std_CELL_Map.find(str)!=std_CELL_Map.end()) {
+                cout<<str<<endl;
+            }
+        }
+    }
+    
+    
+    
+    
+    infile.close();
 }

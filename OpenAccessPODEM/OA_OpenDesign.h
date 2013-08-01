@@ -28,5 +28,6 @@ class OA_openDesign
     
     void loadDesign(string,string,string,string);
     void constructDesign();
+    void unrollingDesign();
 };
 

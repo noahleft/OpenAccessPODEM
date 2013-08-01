@@ -18,6 +18,7 @@ struct OA_CELL {
     vector<pair<string, string> > NetList;
     
     OA_CELL(string n,string std_n):Name(n),Std_Name(std_n),IsModule(false){}
+    ~OA_CELL(){NetList.clear();}
 };
 
 struct OA_MODULE {
