@@ -45,24 +45,28 @@ map<string, std_CELL*> std_CELL_Map;
 void FirstCircuitParser(vector<string> OA_DesignParameter) {
     OA_openDesign oa_design=oa_design.getDesign(OA_DesignParameter[0], OA_DesignParameter[1], OA_DesignParameter[2], OA_DesignParameter[3]);
     OA_DESIGN* design=oa_design.getDesignStructure();
+    OA_MODULE* top_module=design->TopModule;
     
-    for (unsigned i=0; i<design->TopModule->CellList.size(); i++) {
-        std_CELL_Map[design->TopModule->CellList[i]->Std_Name]=NULL;
+    for (unsigned i=0; i<top_module->CellList.size(); i++) {
+        std_CELL_Map[top_module->CellList[i]->Std_Name]=NULL;
     }
     
 }
 
+void GetNextLine(fstream &infile,string &str);
 void FirstLibraryParser(string LibraryPath) {
     if (fopen(LibraryPath.c_str(), "r")==NULL) {
         cout << "Can't open library file: " << LibraryPath << endl;
         exit(-1);
     }
     fstream infile(LibraryPath.c_str(),ios::in);
-    
+    //programmer have to check std_CELL_Map defined
     string str;
     string::size_type pos;
     while (!infile.eof()) {
-        getline(infile, str);
+        
+        GetNextLine(infile, str);
+        
         if ((pos=str.find("cell("))!=string::npos) {
             str=str.substr(pos+5);
             pos=str.find(')');
@@ -77,4 +81,24 @@ void FirstLibraryParser(string LibraryPath) {
     
     
     infile.close();
+}
+
+void GetNextLine(fstream &infile,string &next_line) {
+    next_line.clear();
+    
+    string str;
+    while (!infile.eof()) {
+        getline(infile, str);
+        next_line+=str;
+        if (str.find(';')!=string::npos) {
+            break;
+        }
+        if (str.find('{')!=string::npos) {
+            break;
+        }
+        if (str.find('}')!=string::npos) {
+            break;
+        }
+    }
+    
 }
