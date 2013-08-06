@@ -54,6 +54,7 @@ void FirstCircuitParser(vector<string> OA_DesignParameter) {
 }
 
 void GetNextLine(fstream &infile,string &str);
+void CheckBracesLevel(string str,unsigned &level);
 void FirstLibraryParser(string LibraryPath) {
     if (fopen(LibraryPath.c_str(), "r")==NULL) {
         cout << "Can't open library file: " << LibraryPath << endl;
@@ -63,17 +64,26 @@ void FirstLibraryParser(string LibraryPath) {
     //programmer have to check std_CELL_Map defined
     string str;
     string::size_type pos;
+    unsigned BracesLevel=1;
     while (!infile.eof()) {
         
         GetNextLine(infile, str);
+        CheckBracesLevel(str, BracesLevel);
         
-        if ((pos=str.find("cell("))!=string::npos) {
+        if (BracesLevel==3 && (pos=str.find("cell("))!=string::npos) {
             str=str.substr(pos+5);
             pos=str.find(')');
             str=str.substr(0,pos);
             if (std_CELL_Map.find(str)!=std_CELL_Map.end()) {
                 cout<<str<<endl;
+                
+                
+                
             }
+        }
+        else if (BracesLevel==0) {
+            cout<<"Mismatch on Braces. {}"<<endl;
+            exit(-1);
         }
     }
     
@@ -101,4 +111,13 @@ void GetNextLine(fstream &infile,string &next_line) {
         }
     }
     
+}
+
+void CheckBracesLevel(string str,unsigned &level) {
+    if (str.find('{')!=string::npos) {
+        level++;
+    }
+    if (str.find('}')!=string::npos) {
+        level--;
+    }
 }
