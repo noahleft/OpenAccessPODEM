@@ -1,11 +1,5 @@
 #include "OA_OpenDesign.h"
 #include <iostream>
-OA_openDesign OA_openDesign::getDesign(string libPath,string library,string cellName,string ViewName){
-    OA_openDesign design;
-    design.loadDesign(libPath,library,cellName,ViewName);
-    return design;
-}
-
 
 oaNativeNS ns;
 
@@ -45,7 +39,6 @@ void OA_openDesign::loadDesign(string libPath,string library,string cellName,str
 //      cout << "ERROR: "<< excp.getMsg() <<endl;
 //      exit(1);
 //    }
-    constructDesign();
 }
 
 void OA_openDesign::dumpModule(){
@@ -255,7 +248,6 @@ void OA_openDesign::constructDesign(){
             cell->NetList.push_back(pair<string,string>("SE","test_se"));
         }
     }
-    unrollingDesign();
 }
 
 

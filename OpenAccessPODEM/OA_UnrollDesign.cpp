@@ -9,6 +9,15 @@
 #include "OA_OpenDesign.h"
 #include <iostream>
 
+OA_openDesign OA_openDesign::getDesign(string libPath,string library,string cellName,string ViewName){
+    OA_openDesign design;
+    design.loadDesign(libPath,library,cellName,ViewName);
+    constructDesign();
+    unrollingDesign();
+    return design;
+}
+
+
 OA_openDesign::~OA_openDesign(){
     delete m_designStructure;
     m_designStructure=NULL;
