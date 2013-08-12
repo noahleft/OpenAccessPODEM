@@ -12,6 +12,7 @@
 #include "library.h"
 
 GetLongOpt option;
+LIBRARY Library;
 
 int SetupOption(int argc, char * argv[])
 {
@@ -47,13 +48,13 @@ int SetupOption(int argc, char * argv[])
 }
 extern vector<string> ConfigFileParser(string FileName);
 extern void FirstCircuitParser(vector<string> OA_DesignParameter);
-extern void FirstLibraryParser(string Library);
+extern void FirstLibraryParser(string LibraryPath);
 
 int main(int argc, char * argv[])
 {
     int optind = SetupOption(argc, argv);
     vector<string> OA_DesignParameter;
-    string Library;
+    string LibraryPath;
     //Setup File
     if (optind < argc) {
         if (fopen(argv[optind], "r")==NULL) {
@@ -70,9 +71,9 @@ int main(int argc, char * argv[])
         return -1;
     }
     cout<<"Start parsing input file"<<endl;
-    Library=OA_DesignParameter[4];
+    LibraryPath=OA_DesignParameter[4];
     FirstCircuitParser(OA_DesignParameter);
-    FirstLibraryParser(Library);
+    FirstLibraryParser(LibraryPath);
     
     return 0;
 }

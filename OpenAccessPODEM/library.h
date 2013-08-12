@@ -15,7 +15,22 @@ typedef CELL std_CELL;
 class LIBRARY {
 private:
     vector<std_CELL*> CellList;
+    
 public:
+    LIBRARY(){}
+    ~LIBRARY(){
+        for (unsigned i=0; i<CellList.size(); i++) {
+            delete CellList[i];
+            CellList[i]=NULL;
+        }
+    }
+    
+    std_CELL* CreateStdCell(string n){
+        std_CELL* cell=NULL;
+        cell=cell->CreateCell(n);
+        CellList.push_back(cell);
+        return cell;
+    }
     
 };
 

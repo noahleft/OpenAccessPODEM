@@ -14,7 +14,7 @@
 #include "design.h"
 #include "OA_OpenDesign.h"
 using namespace std;
-
+extern LIBRARY Library;
 
 vector<string> ConfigFileParser(string FileName) {
     vector<string> OA_DesignParameter;
@@ -53,8 +53,8 @@ void FirstCircuitParser(vector<string> OA_DesignParameter) {
     
 }
 
-void GetNextLine(fstream &infile,string &str);
-void CheckBracesLevel(string str,unsigned &level);
+void GetNextLine(fstream &infile,string &str,unsigned &BracesLevel);
+
 void FirstLibraryParser(string LibraryPath) {
     if (fopen(LibraryPath.c_str(), "r")==NULL) {
         cout << "Can't open library file: " << LibraryPath << endl;
@@ -67,17 +67,72 @@ void FirstLibraryParser(string LibraryPath) {
     unsigned BracesLevel=1;
     while (!infile.eof()) {
         
-        GetNextLine(infile, str);
-        CheckBracesLevel(str, BracesLevel);
+        GetNextLine(infile, str, BracesLevel);
         
-        if (BracesLevel==3 && (pos=str.find("cell("))!=string::npos) {
+        if (BracesLevel==3 && (pos=str.find("cell("))!=string::npos) { //"cell" define detected
             str=str.substr(pos+5);
             pos=str.find(')');
             str=str.substr(0,pos);
-            if (std_CELL_Map.find(str)!=std_CELL_Map.end()) {
-                cout<<str<<endl;
+            if (std_CELL_Map.find(str)!=std_CELL_Map.end()) { //this cell is used in design
+                //cout<<str<<endl;
+                std_CELL* cell=Library.CreateStdCell(str);
+                std_CELL_Map[str]=cell;
                 
-                
+                while (!infile.eof()) {
+                    GetNextLine(infile, str,BracesLevel);
+                    
+                    if (BracesLevel==4 && (pos=str.find("pin("))!=string::npos) { //"pin" define detected
+                        str=str.substr(pos+4);
+                        pos=str.find(')');
+                        str=str.substr(0,pos);
+                        //cout<<str<<endl;
+                        std_PIN* pin=NULL;
+                        pin=cell->CreatePin(str);
+                        
+                        while (!infile.eof()) {
+                            
+                            GetNextLine(infile, str, BracesLevel);
+                            
+                            if ((pos=str.find("direction"))!=string::npos) {
+                                str=str.substr(pos+9);
+                                pos=str.find(';');
+                                str=str.substr(0,pos);
+                                pos=str.find(':');
+                                str=str.substr(pos+1);
+                                //cout<<str<<endl;
+                                
+                                if (str.find("input")!=string::npos) {
+                                    pin->SetFunc(G_PI);
+                                    cell->AddPIPin(pin);
+                                }
+                                else if (str.find("output")!=string::npos) {
+                                    pin->SetFunc(G_PO);
+                                    cell->AddPOPin(pin);
+                                }
+                                else {
+                                    cout<<str<<endl;
+                                }
+                            }
+                            else if ((pos=str.find("function"))!=string::npos) {
+                                str=str.substr(pos+9);
+                                pos=str.find(';');
+                                str=str.substr(0,pos);
+                                pos=str.find(':');
+                                str=str.substr(pos+1);
+                                //cout<<str<<endl;
+                                
+                                pos=str.find('"');
+                                str=str.substr(pos+1);
+                                pos=str.find('"');
+                                str=str.substr(0,pos);
+                                pin->SetLogicFunc(str);
+                            }
+                            else if (BracesLevel<4) break;
+                            
+                        }
+                    }
+                    else if (BracesLevel<3) break; //break "cell" define
+                }
                 
             }
         }
@@ -87,13 +142,11 @@ void FirstLibraryParser(string LibraryPath) {
         }
     }
     
-    
-    
-    
     infile.close();
 }
 
-void GetNextLine(fstream &infile,string &next_line) {
+void CheckBracesLevel(string str,unsigned &level);
+void GetNextLine(fstream &infile,string &next_line,unsigned &BracesLevel) {
     next_line.clear();
     
     string str;
@@ -111,6 +164,7 @@ void GetNextLine(fstream &infile,string &next_line) {
         }
     }
     
+    CheckBracesLevel(str, BracesLevel);
 }
 
 void CheckBracesLevel(string str,unsigned &level) {
