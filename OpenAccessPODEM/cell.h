@@ -8,14 +8,14 @@
 
 #ifndef OpenAccessPODEM_cell_h
 #define OpenAccessPODEM_cell_h
-#include "gate.h"
+#include "pin.h"
 //CELL has many GATE
 class CELL {
 private:
     string Name;
     vector<PIN*> InputList;
     vector<PIN*> OutputList;
-    vector<GATE*> GateList;
+    vector<PIN*> GateList;
     
 public:
     
