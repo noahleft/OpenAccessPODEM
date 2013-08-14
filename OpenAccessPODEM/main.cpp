@@ -17,6 +17,8 @@ LIBRARY Library;
 int SetupOption(int argc, char * argv[])
 {
     option.usage("[options] config_file");
+    option.enroll("config", GetLongOpt::NoValue,
+                  "Create config file", 0);
     option.enroll("help", GetLongOpt::NoValue,
                   "print this help summary", 0);
     option.enroll("logicsim", GetLongOpt::NoValue,
@@ -53,6 +55,11 @@ extern void FirstLibraryParser(string LibraryPath);
 int main(int argc, char * argv[])
 {
     int optind = SetupOption(argc, argv);
+    if (option.retrieve("config")) {
+        cout<<"config"<<endl;
+        return 0;
+    }
+    
     vector<string> OA_DesignParameter;
     string LibraryPath;
     //Setup File
