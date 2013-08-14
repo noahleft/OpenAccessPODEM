@@ -10,11 +10,10 @@
 #include <iostream>
 
 OA_openDesign OA_openDesign::getDesign(string libPath,string library,string cellName,string ViewName){
-    OA_openDesign design;
-    design.loadDesign(libPath,library,cellName,ViewName);
+    loadDesign(libPath,library,cellName,ViewName);
     constructDesign();
     unrollingDesign();
-    return design;
+    return *this;
 }
 
 
