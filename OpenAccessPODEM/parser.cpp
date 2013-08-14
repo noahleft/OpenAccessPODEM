@@ -11,10 +11,30 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include "GetLongOpt.h"
 #include "design.h"
 #include "OA_OpenDesign.h"
 using namespace std;
 extern LIBRARY Library;
+extern GetLongOpt option;
+
+void CreateConfigFile() {
+	fstream outfile;
+	if (option.retrieve("output"))
+	{
+		outfile.open(option.retrieve("output"),ios::out);
+	}
+	else {
+		outfile.open("config",ios::out);
+	}
+	outfile<<"#open s27 at designLib"<<endl;
+	outfile<<"./designLib"<<endl;
+	outfile<<"designLib"<<endl;
+	outfile<<"s27"<<endl;
+	outfile<<"layout"<<endl;
+	outfile<<"#foundry library path"<<endl;
+	outfile<<"./l90sprvt_typ.lib"<<endl;
+}
 
 vector<string> ConfigFileParser(string FileName) {
     vector<string> OA_DesignParameter;
@@ -24,6 +44,12 @@ vector<string> ConfigFileParser(string FileName) {
     unsigned num=0;
     while (!infile.eof()) {
         getline(infile, str);
+
+		if (str.length()==0)
+		{
+			continue;
+		}
+
         if (str[0]=='#') {
             continue;
         }

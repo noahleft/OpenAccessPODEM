@@ -51,12 +51,13 @@ int SetupOption(int argc, char * argv[])
 extern vector<string> ConfigFileParser(string FileName);
 extern void FirstCircuitParser(vector<string> OA_DesignParameter);
 extern void FirstLibraryParser(string LibraryPath);
+extern void CreateConfigFile();
 
 int main(int argc, char * argv[])
 {
     int optind = SetupOption(argc, argv);
     if (option.retrieve("config")) {
-        cout<<"config"<<endl;
+        CreateConfigFile();
         return 0;
     }
     
@@ -81,7 +82,7 @@ int main(int argc, char * argv[])
     LibraryPath=OA_DesignParameter[4];
     FirstCircuitParser(OA_DesignParameter);
     FirstLibraryParser(LibraryPath);
-    
+    cout<<"End of program"<<endl;
     return 0;
 }
 
