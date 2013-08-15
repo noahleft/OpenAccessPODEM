@@ -16,6 +16,7 @@
 #include "OA_OpenDesign.h"
 using namespace std;
 extern LIBRARY Library;
+extern DESIGN Design;
 extern GetLongOpt option;
 
 void CreateConfigFile() {
@@ -67,16 +68,15 @@ vector<string> ConfigFileParser(string FileName) {
 }
 
 map<string, std_CELL*> std_CELL_Map;
-
+OA_openDesign oa_design;
 void FirstCircuitParser(vector<string> OA_DesignParameter) {
-    OA_openDesign oa_design=oa_design.getDesign(OA_DesignParameter[0], OA_DesignParameter[1], OA_DesignParameter[2], OA_DesignParameter[3]);
+    oa_design.getDesign(OA_DesignParameter[0], OA_DesignParameter[1], OA_DesignParameter[2], OA_DesignParameter[3]);
     OA_DESIGN* design=oa_design.getDesignStructure();
     OA_MODULE* top_module=design->TopModule;
     
     for (unsigned i=0; i<top_module->CellList.size(); i++) {
         std_CELL_Map[top_module->CellList[i]->Std_Name]=NULL;
     }
-    
 }
 
 void GetNextLine(fstream &infile,string &str,unsigned &BracesLevel);
@@ -200,4 +200,9 @@ void CheckBracesLevel(string str,unsigned &level) {
     if (str.find('}')!=string::npos) {
         level--;
     }
+}
+
+void SecondCircuitParser() { //clone 
+	OA_DESIGN* design=oa_design.getDesignStructure();
+    OA_MODULE* top_module=design->TopModule;
 }

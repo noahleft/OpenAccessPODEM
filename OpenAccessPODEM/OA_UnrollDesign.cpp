@@ -9,11 +9,10 @@
 #include "OA_OpenDesign.h"
 #include <iostream>
 
-OA_openDesign OA_openDesign::getDesign(string libPath,string library,string cellName,string ViewName){
+void OA_openDesign::getDesign(string libPath,string library,string cellName,string ViewName){
     loadDesign(libPath,library,cellName,ViewName);
     constructDesign();
     unrollingDesign();
-    return *this;
 }
 
 
