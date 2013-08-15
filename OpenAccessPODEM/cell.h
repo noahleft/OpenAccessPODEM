@@ -13,6 +13,7 @@
 class CELL {
 private:
     string Name;
+    string Std_Name;
     vector<PIN*> InputList;
     vector<PIN*> OutputList;
     vector<PIN*> GateList;
@@ -46,6 +47,10 @@ public:
     }
     void AddPOPin(PIN* ptr) {
         OutputList.push_back(ptr);
+    }
+    void CloneCell(OA_CELL* oa_cell_ptr) {
+        Std_Name=oa_cell_ptr->Std_Name;
+        //not finish yet   u should create pin data here
     }
 };
 

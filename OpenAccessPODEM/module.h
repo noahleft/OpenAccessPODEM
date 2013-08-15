@@ -15,13 +15,16 @@ private:
     string Name;
     vector<CELL*> CellList; //this can be treat as std cell list
 public:
-    MODULE(){}
+    MODULE(string n):Name(n){}
     ~MODULE(){
         for (unsigned i=0; i<CellList.size(); i++) {
             delete CellList[i];
             CellList[i]=NULL;
         }
     }
+    
+    MODULE* CreateModule(OA_MODULE* oa_module_ptr){return new MODULE(oa_module_ptr->Name);}
+    void CloneModule(OA_MODULE* oa_module_ptr);
 };
 
 #endif

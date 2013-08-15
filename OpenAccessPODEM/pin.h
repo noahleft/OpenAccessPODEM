@@ -9,6 +9,9 @@
 #ifndef OpenAccessPODEM_gate_h
 #define OpenAccessPODEM_gate_h
 #include "typemu.h"
+#include <string>
+#include <vector>
+#include "OA_Design.h"
 using namespace std;
 #include <vector>
 

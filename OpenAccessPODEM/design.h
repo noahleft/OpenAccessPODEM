@@ -12,9 +12,14 @@
 
 class DESIGN {
 private:
-    vector<MODULE*> ModuleList;
+    string Name;
     MODULE* TopModule;
 public:
+    DESIGN():TopModule(NULL){}
+    ~DESIGN(){
+        delete TopModule;
+    }
+    void CloneDesign(OA_DESIGN* oa_design_ptr);
     
 };
 

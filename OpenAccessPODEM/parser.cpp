@@ -200,9 +200,17 @@ void CheckBracesLevel(string str,unsigned &level) {
     if (str.find('}')!=string::npos) {
         level--;
     }
+
 }
+
 
 void SecondCircuitParser() { //clone 
 	OA_DESIGN* design=oa_design.getDesignStructure();
     OA_MODULE* top_module=design->TopModule;
+    
+    Design.CloneDesign(design);
+    
+    
+    
+    
 }
