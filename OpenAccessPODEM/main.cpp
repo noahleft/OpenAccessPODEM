@@ -83,6 +83,13 @@ int main(int argc, char * argv[])
     FirstCircuitParser(OA_DesignParameter);
     FirstLibraryParser(LibraryPath);
     cout<<"End of program"<<endl;
+    
+    
+    
+    if (option.retrieve("logicsim")) {
+        //
+    }
+    
     return 0;
 }
 
