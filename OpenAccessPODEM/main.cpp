@@ -13,6 +13,7 @@
  
 GetLongOpt option;
 LIBRARY Library;
+DESIGN Design;
 
 int SetupOption(int argc, char * argv[])
 {
@@ -52,6 +53,7 @@ extern vector<string> ConfigFileParser(string FileName);
 extern void FirstCircuitParser(vector<string> OA_DesignParameter);
 extern void FirstLibraryParser(string LibraryPath);
 extern void CreateConfigFile();
+extern void SecondCircuitParser();
 
 int main(int argc, char * argv[])
 {
@@ -82,6 +84,7 @@ int main(int argc, char * argv[])
     LibraryPath=OA_DesignParameter[4];
     FirstCircuitParser(OA_DesignParameter);
     FirstLibraryParser(LibraryPath);
+	SecondCircuitParser();
     cout<<"End of program"<<endl;
     
     

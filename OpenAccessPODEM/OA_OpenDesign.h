@@ -11,7 +11,7 @@ class OA_openDesign
 {
   public:
     //the only way to touch constructor
-    OA_openDesign getDesign(string libPath,string library,string cellName,string ViewName);
+    void getDesign(string libPath,string library,string cellName,string ViewName);
     //the only way to dump design
     void dumpModule();
     OA_DESIGN* getDesignStructure() {
@@ -19,8 +19,9 @@ class OA_openDesign
     }
     
     ~OA_openDesign();
+	OA_openDesign():m_design(NULL),m_library(NULL),m_designStructure(NULL){}
   private:
-    OA_openDesign():m_design(NULL),m_library(NULL),m_designStructure(NULL){}
+    
     
     oaDesign*   m_design;
     oaLib*      m_library;
