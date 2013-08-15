@@ -43,9 +43,13 @@ public:
     void AddPOPin(PIN* ptr) {
         OutputList.push_back(ptr);
     }
-    void CloneCell(OA_CELL* oa_cell_ptr) {
+    void CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap) {
         Std_Name=oa_cell_ptr->Std_Name;
-        //not finish yet   u should create pin data here
+        for (unsigned i=0; i<oa_cell_ptr->NetList.size(); i++) {
+            AddPin(NameToPinMap[oa_cell_ptr->NetList[i].second]);
+        }
+        //not finish yet, u should set connection between pin
+        //connection info is in Library
     }
 };
 

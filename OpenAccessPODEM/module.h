@@ -29,7 +29,15 @@ public:
     }
     
     MODULE* CreateModule(OA_MODULE* oa_module_ptr){return new MODULE(oa_module_ptr->Name);}
-    void CloneModule(OA_MODULE* oa_module_ptr);
+    void CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap);
+    
+    void CreatePin(map<string, PIN*> &NameToPinMap) {
+        map<string, PIN*>::iterator it;
+        for (it=NameToPinMap.begin(); it!=NameToPinMap.end(); it++) {
+            it->second=it->second->CreatePin(it->first);
+            PinList.push_back(it->second);
+        }
+    }
 };
 
 #endif

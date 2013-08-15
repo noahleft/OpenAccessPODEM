@@ -19,7 +19,7 @@ public:
     ~DESIGN(){
         delete TopModule;
     }
-    void CloneDesign(OA_DESIGN* oa_design_ptr);
+    void CloneDesign(OA_DESIGN* oa_design_ptr,map<string, PIN*> &NameToPinMap);
     
 };
 
