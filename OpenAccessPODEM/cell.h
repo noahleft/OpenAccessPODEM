@@ -21,12 +21,7 @@ private:
     CELL(string n):Name(n){}
 public:
     
-    ~CELL() {
-        for (unsigned i=0; i<GateList.size(); i++) {
-            delete GateList[i];
-            GateList[i]=NULL;
-        }
-    }
+    ~CELL() {}
     
     CELL* CreateCell(string n){
         CELL* cell=new CELL(n);

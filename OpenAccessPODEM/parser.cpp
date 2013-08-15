@@ -114,6 +114,7 @@ void FirstLibraryParser(string LibraryPath) {
                         //cout<<str<<endl;
                         std_PIN* pin=NULL;
                         pin=cell->CreatePin(str);
+                        Library.AddPin(pin);
                         
                         while (!infile.eof()) {
                             
@@ -204,11 +205,20 @@ void CheckBracesLevel(string str,unsigned &level) {
 }
 
 
-void SecondCircuitParser() { //clone 
+void SecondCircuitParser() {
 	OA_DESIGN* design=oa_design.getDesignStructure();
     OA_MODULE* top_module=design->TopModule;
+    map<string, PIN*> NameToPinMap;
+    for (unsigned i=0; i<top_module->CellList.size(); i++) {
+        OA_CELL* oa_cell=top_module->CellList[i];
+        for (unsigned j=0; j<oa_cell->NetList.size(); j++) {
+            NameToPinMap[oa_cell->NetList[j].second]=NULL;
+        }
+    }
     
-    Design.CloneDesign(design);
+    
+    //clone
+    Design.CloneDesign(design,NameToPinMap);
     
     
     

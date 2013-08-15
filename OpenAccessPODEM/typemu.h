@@ -9,6 +9,8 @@
 #ifndef OpenAccessPODEM_typemu_h
 #define OpenAccessPODEM_typemu_h
 #include <string>
+#include <map>
+#include <vector>
 
 enum VALUE {S0,S1,X,D,B,UNKNOWN};
 enum GATEFUNC {G_PI,G_PO,G_PPI,G_PPO,G_AND,G_OR,G_NOT,G_NAND,G_NOR,G_BUF,G_XOR,G_UNKNOWN};

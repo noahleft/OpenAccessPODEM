@@ -14,9 +14,14 @@ class MODULE {
 private:
     string Name;
     vector<CELL*> CellList; //this can be treat as std cell list
+    vector<PIN*> PinList;
 public:
     MODULE(string n):Name(n){}
     ~MODULE(){
+        for (unsigned i=0; i<PinList.size(); i++) {
+            delete PinList[i];
+            PinList[i]=NULL;
+        }
         for (unsigned i=0; i<CellList.size(); i++) {
             delete CellList[i];
             CellList[i]=NULL;

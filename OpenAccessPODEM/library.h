@@ -15,10 +15,15 @@ typedef CELL std_CELL;
 class LIBRARY {
 private:
     vector<std_CELL*> CellList;
+    vector<std_PIN*> PinList;
     
 public:
     LIBRARY(){}
     ~LIBRARY(){
+        for (unsigned i=0; i<PinList.size(); i++) {
+            delete PinList[i];
+            PinList[i]=NULL;
+        }
         for (unsigned i=0; i<CellList.size(); i++) {
             delete CellList[i];
             CellList[i]=NULL;
@@ -32,6 +37,7 @@ public:
         return cell;
     }
     
+    void AddPin(std_PIN* ptr){PinList.push_back(ptr);}
 };
 
 #endif
