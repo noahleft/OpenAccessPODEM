@@ -56,13 +56,6 @@ vector<string> ConfigFileParser(string FileName) {
         }
         OA_DesignParameter.push_back(str);
         num++;
-        if (num==5) {
-            break;
-        }
-    }
-    if (OA_DesignParameter.size()!=5) {
-        cout<<"check config file format."<<endl;
-        exit(-1);
     }
     return OA_DesignParameter;
 }
@@ -80,8 +73,14 @@ void FirstCircuitParser(vector<string> OA_DesignParameter) {
 }
 
 void GetNextLine(fstream &infile,string &str,unsigned &BracesLevel);
+void LibraryParser(string LibraryPath);
+void FirstLibraryParser(vector<string> LibraryPathVector) {
+    for (unsigned i=0; i<LibraryPathVector.size(); i++) {
+        LibraryParser(LibraryPathVector[i]);
+    }
+}
 
-void FirstLibraryParser(string LibraryPath) {
+void LibraryParser(string LibraryPath) {
     if (fopen(LibraryPath.c_str(), "r")==NULL) {
         cout << "Can't open library file: " << LibraryPath << endl;
         exit(-1);
@@ -99,7 +98,7 @@ void FirstLibraryParser(string LibraryPath) {
             str=str.substr(pos+5);
             pos=str.find(')');
             str=str.substr(0,pos);
-            if (std_CELL_Map.find(str)!=std_CELL_Map.end()) { //this cell is used in design
+            if (std_CELL_Map.find(str)!=std_CELL_Map.end() && std_CELL_Map[str]!=NULL) { //this cell is used in design
                 //cout<<str<<endl;
                 std_CELL* cell=Library.CreateStdCell(str);
                 std_CELL_Map[str]=cell;
