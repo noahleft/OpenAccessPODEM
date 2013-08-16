@@ -51,7 +51,7 @@ int SetupOption(int argc, char * argv[])
 }
 extern vector<string> ConfigFileParser(string FileName);
 extern void FirstCircuitParser(vector<string> OA_DesignParameter);
-extern void FirstLibraryParser(vector<string> LibraryPath);
+extern void FirstLibraryParser(vector<string> LibraryPathVector);
 extern void CreateConfigFile();
 extern void SecondCircuitParser();
 
@@ -64,7 +64,7 @@ int main(int argc, char * argv[])
     }
     
     vector<string> OA_DesignParameter;
-    vector<string> LibraryPath;
+    vector<string> LibraryPathVector;
     //Setup File
     if (optind < argc) {
         if (fopen(argv[optind], "r")==NULL) {
@@ -81,9 +81,9 @@ int main(int argc, char * argv[])
         return -1;
     }
     cout<<"Start parsing input file"<<endl;
-    LibraryPath.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
+    LibraryPathVector.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
     FirstCircuitParser(OA_DesignParameter);
-    FirstLibraryParser(LibraryPath);
+    FirstLibraryParser(LibraryPathVector);
 	SecondCircuitParser();
     cout<<"End of program"<<endl;
     
