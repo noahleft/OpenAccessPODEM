@@ -98,7 +98,7 @@ void LibraryParser(string LibraryPath) {
             str=str.substr(pos+5);
             pos=str.find(')');
             str=str.substr(0,pos);
-            if (std_CELL_Map.find(str)!=std_CELL_Map.end() && std_CELL_Map[str]!=NULL) { //this cell is used in design
+            if (std_CELL_Map.find(str)!=std_CELL_Map.end() && std_CELL_Map[str]==NULL) { //this cell is used in design
                 //cout<<str<<endl;
                 std_CELL* cell=Library.CreateStdCell(str);
                 std_CELL_Map[str]=cell;
