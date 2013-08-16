@@ -29,7 +29,7 @@ public:
     }
     
     MODULE* CreateModule(OA_MODULE* oa_module_ptr){return new MODULE(oa_module_ptr->Name);}
-    void CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap);
+    void CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap,map<string, std_CELL*> &std_CELL_map);
     
     void CreatePin(map<string, PIN*> &NameToPinMap) {
         map<string, PIN*>::iterator it;

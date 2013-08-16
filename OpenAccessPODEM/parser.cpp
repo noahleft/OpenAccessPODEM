@@ -204,7 +204,7 @@ void CheckBracesLevel(string str,unsigned &level) {
 }
 
 
-void SecondCircuitParser() {
+void SecondCircuitParser(LIBRARY &lib) {
 	OA_DESIGN* design=oa_design.getDesignStructure();
     OA_MODULE* top_module=design->TopModule;
     map<string, PIN*> NameToPinMap;
@@ -217,7 +217,7 @@ void SecondCircuitParser() {
     
     
     //clone
-    Design.CloneDesign(design,NameToPinMap);
+    Design.CloneDesign(design,NameToPinMap,std_CELL_Map);
     
     
     

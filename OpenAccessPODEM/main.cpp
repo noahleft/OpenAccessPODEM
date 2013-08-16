@@ -53,7 +53,7 @@ extern vector<string> ConfigFileParser(string FileName);
 extern void FirstCircuitParser(vector<string> OA_DesignParameter);
 extern void FirstLibraryParser(vector<string> LibraryPathVector);
 extern void CreateConfigFile();
-extern void SecondCircuitParser();
+extern void SecondCircuitParser(LIBRARY &lib);
 
 int main(int argc, char * argv[])
 {
@@ -84,7 +84,7 @@ int main(int argc, char * argv[])
     LibraryPathVector.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
     FirstCircuitParser(OA_DesignParameter);
     FirstLibraryParser(LibraryPathVector);
-	SecondCircuitParser();
+	SecondCircuitParser(Library);
     cout<<"End of program"<<endl;
     
     

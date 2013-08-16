@@ -8,9 +8,9 @@
 
 #include "design.h"
 
-void DESIGN::CloneDesign(OA_DESIGN* oa_design_ptr,map<string, PIN*> &NameToPinMap) {
+void DESIGN::CloneDesign(OA_DESIGN* oa_design_ptr,map<string, PIN*> &NameToPinMap,map<string, std_CELL*> &std_CELL_Map) {
     Name=oa_design_ptr->Name;
     TopModule=TopModule->CreateModule(oa_design_ptr->TopModule);
     TopModule->CreatePin(NameToPinMap);
-    TopModule->CloneModule(oa_design_ptr->TopModule,NameToPinMap);
+    TopModule->CloneModule(oa_design_ptr->TopModule,NameToPinMap,std_CELL_Map);
 }

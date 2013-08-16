@@ -14,6 +14,7 @@
 #include "OA_Design.h"
 using namespace std;
 #include <vector>
+class LIBRARY;
 
 class PIN {
 private:
@@ -34,6 +35,8 @@ public:
     
     void SetFunc(GATEFUNC f) {Func=f;}
     void SetLogicFunc(string str){LogicFunction=str;}
+    string GetName(){return Name;}
 };
+typedef PIN std_PIN;
 
 #endif

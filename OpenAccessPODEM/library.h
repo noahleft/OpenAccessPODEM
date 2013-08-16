@@ -9,8 +9,6 @@
 #ifndef OpenAccessPODEM_library_h
 #define OpenAccessPODEM_library_h
 #include "module.h"
-typedef PIN std_PIN;
-typedef CELL std_CELL;
 
 class LIBRARY {
 private:

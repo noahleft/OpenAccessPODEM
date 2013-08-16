@@ -8,11 +8,11 @@
 
 #include "module.h"
 
-void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap) {
+void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap,map<string, std_CELL*> &std_CELL_map) {
     for (unsigned i=0; i<oa_module_ptr->CellList.size(); i++) {
         CELL* cell=NULL;
         cell=cell->CreateCell(oa_module_ptr->CellList[i]->Name);
         CellList.push_back(cell);
-        cell->CloneCell(oa_module_ptr->CellList[i],NameToPinMap);
+        cell->CloneCell(oa_module_ptr->CellList[i],NameToPinMap,std_CELL_map[oa_module_ptr->CellList[i]->Std_Name]);
     }
 }
