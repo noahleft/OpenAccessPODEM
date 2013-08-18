@@ -30,3 +30,7 @@ void DESIGN::CloneDesign(OA_DESIGN* oa_design_ptr,map<string, PIN*> &NameToPinMa
 void DESIGN::SetupNonScanFF() {
     TopModule->SetupNonScanFF();
 }
+
+void DESIGN::Levelize() {
+    TopModule->Levelize();
+}

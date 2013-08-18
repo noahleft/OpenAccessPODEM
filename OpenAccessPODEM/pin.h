@@ -24,8 +24,10 @@ private:
     string LogicFunction;
     vector<PIN*> InputList;
     vector<PIN*> OutputList;
+    int Level;
+    unsigned Count;
     
-    PIN(string n):Name(n),Value(X),Func(G_UNKNOWN){}
+    PIN(string n):Name(n),Value(X),Func(G_UNKNOWN),Level(-1),Count(0){}
 public:
     
     PIN* CreatePin(string n){
@@ -43,8 +45,19 @@ public:
     
     unsigned No_Fanin(){return (unsigned)InputList.size();}
     unsigned No_Fanout(){return (unsigned)OutputList.size();}
+    PIN* Fanin(unsigned n){return InputList[n];}
+    PIN* Fanout(unsigned n){return OutputList[n];}
     
     bool IsPrimaryInOut(){return Func==G_PI||Func==G_PO;}
+    
+    int GetLevel(){return Level;}
+    void SetLevel(int n){Level=n;}
+    
+    void IncCount(){Count++;}
+    void DecCount(){Count--;}
+    void ResetCount(){Count=0;}
+    unsigned GetCount(){return Count;}
+    
 };
 typedef PIN std_PIN;
 
