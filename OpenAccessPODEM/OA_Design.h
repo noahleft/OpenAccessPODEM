@@ -25,6 +25,8 @@ struct OA_MODULE {
     string Name;
     vector<OA_MODULE*> SubModuleList;
     vector<OA_CELL*> CellList;
+    vector<string> InputList;
+    vector<string> OutputList;
     
     OA_MODULE(string n):Name(n){}
     ~OA_MODULE(){

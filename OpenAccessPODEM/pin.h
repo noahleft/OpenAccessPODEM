@@ -40,6 +40,11 @@ public:
     
     void AddInput(PIN* ptr){InputList.push_back(ptr);}
     void AddOutput(PIN* ptr){OutputList.push_back(ptr);}
+    
+    unsigned No_Fanin(){return (unsigned)InputList.size();}
+    unsigned No_Fanout(){return (unsigned)OutputList.size();}
+    
+    bool IsPrimaryInOut(){return Func==G_PI||Func==G_PO;}
 };
 typedef PIN std_PIN;
 

@@ -15,6 +15,12 @@ private:
     string Name;
     vector<CELL*> CellList; //this can be treat as std cell list
     vector<PIN*> PinList;
+    
+    vector<PIN*> PIlist;
+    vector<PIN*> POlist;
+    vector<PIN*> PPIlist;
+    vector<PIN*> PPOlist;
+    
 public:
     MODULE(string n):Name(n){}
     ~MODULE(){
@@ -38,6 +44,13 @@ public:
             PinList.push_back(it->second);
         }
     }
+    
+    void AddPI(PIN* ptr){PIlist.push_back(ptr);}
+    void AddPO(PIN* ptr){POlist.push_back(ptr);}
+    void AddPPI(PIN* ptr){PPIlist.push_back(ptr);}
+    void AddPPO(PIN* ptr){PPOlist.push_back(ptr);}
+    
+    void SetupNonScanFF();
 };
 
 #endif

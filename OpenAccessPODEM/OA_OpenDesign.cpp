@@ -205,6 +205,18 @@ void OA_openDesign::constructDesign(){
             cell->NetList.push_back(pair<string,string>("A","CK__L1_N0"));
             cell->NetList.push_back(pair<string,string>("Z","CK__L2_N0"));
         }
+        module->InputList.push_back("GND");
+        module->InputList.push_back("VDD");
+        module->InputList.push_back("CK");
+        module->InputList.push_back("G0");
+        module->InputList.push_back("G1");
+        module->InputList.push_back("G2");
+        module->InputList.push_back("G3");
+        module->InputList.push_back("test_si");
+        module->InputList.push_back("test_se");
+        module->OutputList.push_back("G17");
+        module->OutputList.push_back("test_so");
+        
     }
     {
         OA_MODULE* module=new OA_MODULE("dff_test_2");
@@ -219,6 +231,11 @@ void OA_openDesign::constructDesign(){
             cell->NetList.push_back(pair<string,string>("SD","test_si"));
             cell->NetList.push_back(pair<string,string>("SE","test_se"));
         }
+        module->InputList.push_back("CK");
+        module->InputList.push_back("D");
+        module->InputList.push_back("test_si");
+        module->InputList.push_back("test_se");
+        module->OutputList.push_back("test_so");
     }
     {
         OA_MODULE* module=new OA_MODULE("dff_test_0");
@@ -233,6 +250,11 @@ void OA_openDesign::constructDesign(){
             cell->NetList.push_back(pair<string,string>("SD","test_si"));
             cell->NetList.push_back(pair<string,string>("SE","test_se"));
         }
+        module->InputList.push_back("CK");
+        module->InputList.push_back("D");
+        module->InputList.push_back("test_si");
+        module->InputList.push_back("test_se");
+        module->OutputList.push_back("test_so");
     }
     {
         OA_MODULE* module=new OA_MODULE("dff_test_1");
@@ -247,6 +269,11 @@ void OA_openDesign::constructDesign(){
             cell->NetList.push_back(pair<string,string>("SD","test_si"));
             cell->NetList.push_back(pair<string,string>("SE","test_se"));
         }
+        module->InputList.push_back("CK");
+        module->InputList.push_back("D");
+        module->InputList.push_back("test_si");
+        module->InputList.push_back("test_se");
+        module->OutputList.push_back("test_so");
     }
 }
 

@@ -215,10 +215,9 @@ void SecondCircuitParser(LIBRARY &lib) {
         }
     }
     
-    
     //clone
     Design.CloneDesign(design,NameToPinMap,std_CELL_Map);
-    
+    Design.SetupNonScanFF();
     
     
     

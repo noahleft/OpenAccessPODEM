@@ -16,3 +16,17 @@ void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMa
         cell->CloneCell(oa_module_ptr->CellList[i],NameToPinMap,std_CELL_map[oa_module_ptr->CellList[i]->Std_Name]);
     }
 }
+
+void MODULE::SetupNonScanFF() {
+    for (unsigned i=0; i<PinList.size(); i++) {
+        PIN* pin=PinList[i];
+        if (!pin->IsPrimaryInOut() &&pin->No_Fanin()==0) {
+            AddPPI(pin);
+            pin->SetFunc(G_PPI);
+        }
+        if (!pin->IsPrimaryInOut() && pin->No_Fanout()==0) {
+            AddPPO(pin);
+            pin->SetFunc(G_PPO);
+        }
+    }
+}

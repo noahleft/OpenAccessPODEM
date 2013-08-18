@@ -85,7 +85,6 @@ int main(int argc, char * argv[])
     FirstCircuitParser(OA_DesignParameter);
     FirstLibraryParser(LibraryPathVector);
 	SecondCircuitParser(Library);
-    cout<<"End of program"<<endl;
     
     
     
