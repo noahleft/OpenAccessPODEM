@@ -36,6 +36,7 @@ public:
     }
     
     void SetFunc(GATEFUNC f) {Func=f;}
+    GATEFUNC GetFunc(){return Func;}
     void SetLogicFunc(string str){LogicFunction=str;}
     string GetName(){return Name;}
     string GetLogicFunc(){return LogicFunction;}

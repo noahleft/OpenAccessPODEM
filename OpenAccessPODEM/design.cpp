@@ -34,3 +34,7 @@ void DESIGN::SetupNonScanFF() {
 void DESIGN::Levelize() {
     TopModule->Levelize();
 }
+
+void DESIGN::Check_Levelization() {
+    TopModule->Check_Levelization();
+}

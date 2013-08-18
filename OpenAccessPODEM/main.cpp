@@ -87,6 +87,7 @@ int main(int argc, char * argv[])
 	SecondCircuitParser(Library);
     
     Design.Levelize();
+    Design.Check_Levelization();
     
     if (option.retrieve("logicsim")) {
         //

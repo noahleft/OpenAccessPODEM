@@ -8,6 +8,7 @@
 
 #include "module.h"
 #include <list>
+#include <iostream>
 void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap,map<string, std_CELL*> &std_CELL_map) {
     for (unsigned i=0; i<oa_module_ptr->CellList.size(); i++) {
         CELL* cell=NULL;
@@ -80,3 +81,36 @@ void MODULE::Levelize() {
         PinList[i]->ResetCount();
     }
 }
+
+void MODULE::Check_Levelization() {
+    PIN* gptr;
+    PIN* in;
+    for (unsigned i=0; i<PinList.size(); i++) {
+        gptr=PinList[i];
+        if (gptr->GetFunc()==G_PI) {
+            if (gptr->GetLevel()!=0) {
+                cout<<"Wrong level at PI:"<<gptr->GetName()<<endl;
+                exit(-1);
+            }
+        }
+        else if (gptr->GetFunc()==G_PPI) {
+            if (gptr->GetLevel()!=0) {
+                cout<<"Wrong level at PPI:"<<gptr->GetName()<<endl;
+                exit(-1);
+            }
+        }
+        else {
+            for (unsigned j=0; j<gptr->No_Fanin(); j++) {
+                in=gptr->Fanin(j);
+                if (in==NULL) {
+                    continue;
+                }
+                if (in->GetLevel() >= gptr->GetLevel()) {
+                    cout<<"Wrong level at:"<<gptr->GetName()<<'\t'<<gptr->GetLevel()<<
+                    " with its fanin "<<in->GetName()<<'\t'<<in->GetLevel()<<endl;
+                }
+            }
+        }
+    }
+}
+

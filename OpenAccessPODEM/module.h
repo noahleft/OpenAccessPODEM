@@ -52,6 +52,7 @@ public:
     
     void SetupNonScanFF();
     void Levelize();
+    void Check_Levelization();
 };
 
 #endif
