@@ -36,6 +36,10 @@ public:
     void SetFunc(GATEFUNC f) {Func=f;}
     void SetLogicFunc(string str){LogicFunction=str;}
     string GetName(){return Name;}
+    string GetLogicFunc(){return LogicFunction;}
+    
+    void AddInput(PIN* ptr){InputList.push_back(ptr);}
+    void AddOutput(PIN* ptr){OutputList.push_back(ptr);}
 };
 typedef PIN std_PIN;
 

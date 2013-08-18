@@ -43,18 +43,7 @@ public:
     void AddPOPin(PIN* ptr) {
         OutputList.push_back(ptr);
     }
-    void CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr) {
-        Std_Name=oa_cell_ptr->Std_Name;
-        for (unsigned i=0; i<oa_cell_ptr->NetList.size(); i++) {
-            AddPin(NameToPinMap[oa_cell_ptr->NetList[i].second]);
-            if (std_cell_ptr->IsPIPin(oa_cell_ptr->NetList[i].first)) {
-                AddPIPin(NameToPinMap[oa_cell_ptr->NetList[i].second]);
-            }
-            else {
-                AddPOPin(NameToPinMap[oa_cell_ptr->NetList[i].second]);
-            }
-        }
-    }
+    void CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr);
     
     
     bool IsPIPin(string n){
@@ -64,6 +53,15 @@ public:
             }
         }
         return false;
+    }
+    
+    PIN* GetPin(string str){
+        for (unsigned i=0; i<GateList.size(); i++) {
+            if (str.compare(GateList[i]->GetName())==0) {
+                return GateList[i];
+            }
+        }
+        return NULL;
     }
     
 };
