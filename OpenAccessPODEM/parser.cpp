@@ -157,6 +157,47 @@ void LibraryParser(string LibraryPath) {
                             
                         }
                     }
+					else if(BracesLevel==4 && (pos=str.find("ff("))!=string::npos) { //"ff" define detected
+					    str=str.substr(pos+3);
+                        pos=str.find(')');
+                        str=str.substr(0,pos);
+                        //cout<<str<<endl;
+						pos=str.find(',');
+						string IQ=str.substr(0,pos);
+						string IQN=str.substr(pos+1);
+						std_PIN* IQ_pin=NULL;
+                        IQ_pin=cell->CreatePin(IQ);
+                        Library.AddPin(IQ_pin);
+						std_PIN* IQN_pin=NULL;
+                        IQN_pin=cell->CreatePin(IQN);
+                        Library.AddPin(IQN_pin);
+
+						IQ_pin->SetFunc(G_PPO);
+						IQN_pin->SetFunc(G_PPO);
+
+						while (!infile.eof()) {
+                            
+                            GetNextLine(infile, str, BracesLevel);
+                            
+                            if ((pos=str.find("next_state"))!=string::npos) {
+								str=str.substr(pos+10);
+                                pos=str.find(';');
+                                str=str.substr(0,pos);
+                                pos=str.find(':');
+                                str=str.substr(pos+1);
+                                //cout<<str<<endl;
+								IQ_pin->SetLogicFunc(str);
+								IQN_pin->SetLogicFunc("!("+str+")");
+							}
+							else if ((pos=str.find("clocked_on"))!=string::npos) {//prepare for future use, need to expand library.cell format
+							}
+							else if ((pos=str.find("clear"))!=string::npos) {//prepare for future use, need to expand library.cell format
+							}
+							else if ((pos=str.find("preset"))!=string::npos) {//prepare for future use, need to expand library.cell format
+							}
+							else if (BracesLevel<4) break;
+						}
+					}
                     else if (BracesLevel<3) break; //break "cell" define
                 }
                 
