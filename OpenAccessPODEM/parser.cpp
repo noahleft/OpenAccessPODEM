@@ -215,6 +215,7 @@ void LibraryParser(string LibraryPath) {
 }
 
 void CheckBracesLevel(string str,unsigned &level);
+void ReplaceWhiteSpace(string &str);
 void GetNextLine(fstream &infile,string &next_line,unsigned &BracesLevel) {
     next_line.clear();
     
@@ -232,7 +233,7 @@ void GetNextLine(fstream &infile,string &next_line,unsigned &BracesLevel) {
             break;
         }
     }
-    
+    ReplaceWhiteSpace(next_line);
     CheckBracesLevel(str, BracesLevel);
 }
 
@@ -246,6 +247,12 @@ void CheckBracesLevel(string str,unsigned &level) {
 
 }
 
+void ReplaceWhiteSpace(string &str) {
+    string::size_type idx;
+    while ((idx=str.find(' '))!=string::npos) {
+        str=str.substr(0,idx)+str.substr(idx+1);
+    }
+}
 
 void SecondCircuitParser(LIBRARY &lib) {
 	OA_DESIGN* oa_design_ptr=oa_design.getDesignStructure();

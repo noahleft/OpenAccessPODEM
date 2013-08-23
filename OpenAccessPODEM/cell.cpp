@@ -40,11 +40,13 @@ void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* 
             
             string LogicFunction=std_cell_ptr->FFList[i]->GetLogicFunc();
             AnalyizeLogicFunction(LogicFunction);
-            for (unsigned j=0; j<oa_cell_ptr->NetList.size(); j++) {
+            for (unsigned j=0; j<oa_cell_ptr->NetList.size();) {
                 string::size_type idx;
                 if ((idx=LogicFunction.find('@'+oa_cell_ptr->NetList[j].first))!=string::npos) {
                     LogicFunction.replace(idx, oa_cell_ptr->NetList[j].first.size()+1, oa_cell_ptr->NetList[j].second);
+                    continue;
                 }
+                j++;
             }
             pin->SetLogicFunc(LogicFunction);
         }
@@ -60,7 +62,7 @@ void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* 
             }
         }
     }
-    else {
+    else {// refer to combinational std cell
         for (unsigned i=0; i<OutputList.size(); i++) {
             PIN* pin=OutputList[i];
             string LogicFunction=pin->GetLogicFunc();
