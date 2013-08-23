@@ -47,18 +47,29 @@ void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* 
                 }
             }
             pin->SetLogicFunc(LogicFunction);
-        
+        }
+        for (unsigned i=0; i<FFList.size(); i++) {
+            PIN* pin=FFList[i];
+            string LogicFunction=pin->GetLogicFunc();
+            AnalyizeLogicFunction(LogicFunction);
+            for (unsigned j=0; j<InputList.size(); j++) {
+                if (LogicFunction.find('@'+InputList[j]->GetName())!=string::npos) {
+                    pin->AddInput(InputList[j]);
+                    InputList[j]->AddOutput(pin);
+                }
+            }
         }
     }
-    
-    for (unsigned i=0; i<OutputList.size(); i++) {
-        PIN* pin=OutputList[i];
-        string LogicFunction=pin->GetLogicFunc();
-        AnalyizeLogicFunction(LogicFunction);
-        for (unsigned j=0; j<InputList.size(); j++) {
-            if (LogicFunction.find('@'+InputList[j]->GetName())!=string::npos) {
-                pin->AddInput(InputList[j]);
-                InputList[j]->AddOutput(pin);
+    else {
+        for (unsigned i=0; i<OutputList.size(); i++) {
+            PIN* pin=OutputList[i];
+            string LogicFunction=pin->GetLogicFunc();
+            AnalyizeLogicFunction(LogicFunction);
+            for (unsigned j=0; j<InputList.size(); j++) {
+                if (LogicFunction.find('@'+InputList[j]->GetName())!=string::npos) {
+                    pin->AddInput(InputList[j]);
+                    InputList[j]->AddOutput(pin);
+                }
             }
         }
     }
