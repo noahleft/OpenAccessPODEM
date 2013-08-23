@@ -173,7 +173,9 @@ void LibraryParser(string LibraryPath) {
                         Library.AddPin(IQN_pin);
 
 						IQ_pin->SetFunc(G_PPO);
+                        cell->AddFFPin(IQ_pin);
 						IQN_pin->SetFunc(G_PPO);
+                        cell->AddFFPin(IQN_pin);
 
 						while (!infile.eof()) {
                             
@@ -258,7 +260,7 @@ void SecondCircuitParser(LIBRARY &lib) {
     
     //clone
     Design.CloneDesign(oa_design_ptr,NameToPinMap,std_CELL_Map);
-    Design.SetupNonScanFF();
+//    Design.SetupNonScanFF();
     
     
     

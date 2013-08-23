@@ -50,7 +50,6 @@ public:
     void AddPPI(PIN* ptr){PPIlist.push_back(ptr);}
     void AddPPO(PIN* ptr){PPOlist.push_back(ptr);}
     
-    void SetupNonScanFF();
     void Levelize();
     void Check_Levelization();
 };

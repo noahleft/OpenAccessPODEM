@@ -15,21 +15,31 @@ void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMa
         cell=cell->CreateCell(oa_module_ptr->CellList[i]->Name);
         CellList.push_back(cell);
         cell->CloneCell(oa_module_ptr->CellList[i],NameToPinMap,std_CELL_map[oa_module_ptr->CellList[i]->Std_Name]);
-    }
-}
-
-void MODULE::SetupNonScanFF() {
-    for (unsigned i=0; i<PinList.size(); i++) {
-        PIN* pin=PinList[i];
-        if (!pin->IsPrimaryInOut() &&pin->No_Fanin()==0) {
-            AddPPI(pin);
-            pin->SetFunc(G_PPI);
-        }
-        if (!pin->IsPrimaryInOut() && pin->No_Fanout()==0) {
-            AddPPO(pin);
-            pin->SetFunc(G_PPO);
+        if (cell->No_Internal()!=0) {
+            for (unsigned j=0; j<cell->No_Internal(); j++) {
+                cell->InternalPin(j)->SetFunc(G_PPO);
+                AddPPO(cell->InternalPin(j));
+            }
+            for (unsigned j=0; j<cell->No_Output(); j++) {
+                cell->OutputPin(j)->SetFunc(G_PPI);
+                AddPPI(cell->OutputPin(j));
+            }
         }
     }
+    
+    for (unsigned i=0; i<oa_module_ptr->InputList.size(); i++) {
+        if (NameToPinMap.find(oa_module_ptr->InputList[i])!=NameToPinMap.end()) {
+            AddPI(NameToPinMap[oa_module_ptr->InputList[i]]);
+            NameToPinMap[oa_module_ptr->InputList[i]]->SetFunc(G_PI);
+        }
+    }
+    for (unsigned i=0; i<oa_module_ptr->OutputList.size(); i++) {
+        if (NameToPinMap.find(oa_module_ptr->OutputList[i])!=NameToPinMap.end()) {
+            AddPO(NameToPinMap[oa_module_ptr->OutputList[i]]);
+            NameToPinMap[oa_module_ptr->OutputList[i]]->SetFunc(G_PO);
+        }
+    }
+    
 }
 
 void MODULE::Levelize() {

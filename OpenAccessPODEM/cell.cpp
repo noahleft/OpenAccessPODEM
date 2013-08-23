@@ -10,7 +10,7 @@
 #include <iostream>
 
 void AnalyizeLogicFunction(string &func);
-void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr) {
+void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr) {  //clone from oa_cell_ptr to this(design) and refer gate info from std_cell_ptr
     Std_Name=oa_cell_ptr->Std_Name;
     for (unsigned i=0; i<oa_cell_ptr->NetList.size(); i++) {
         AddPin(NameToPinMap[oa_cell_ptr->NetList[i].second]);
@@ -31,6 +31,26 @@ void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* 
             pin->SetLogicFunc(LogicFunction);
         }
     }
+    if (std_cell_ptr->FFList.size()!=0) {  //refer to FF,latch
+        for (unsigned i=0; i<std_cell_ptr->FFList.size(); i++) {
+            PIN* pin=NULL;
+            pin=pin->CreatePin(Name+"."+std_cell_ptr->FFList[i]->GetName());
+            pin->SetFunc(G_PPO);
+            AddFFPin(pin);
+            
+            string LogicFunction=std_cell_ptr->FFList[i]->GetLogicFunc();
+            AnalyizeLogicFunction(LogicFunction);
+            for (unsigned j=0; j<oa_cell_ptr->NetList.size(); j++) {
+                string::size_type idx;
+                if ((idx=LogicFunction.find('@'+oa_cell_ptr->NetList[j].first))!=string::npos) {
+                    LogicFunction.replace(idx, oa_cell_ptr->NetList[j].first.size()+1, oa_cell_ptr->NetList[j].second);
+                }
+            }
+            pin->SetLogicFunc(LogicFunction);
+        
+        }
+    }
+    
     for (unsigned i=0; i<OutputList.size(); i++) {
         PIN* pin=OutputList[i];
         string LogicFunction=pin->GetLogicFunc();
