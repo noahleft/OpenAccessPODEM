@@ -248,9 +248,12 @@ void CheckBracesLevel(string str,unsigned &level) {
 }
 
 void ReplaceWhiteSpace(string &str) {
-    string::size_type idx;
-    while ((idx=str.find(' '))!=string::npos) {
-        str=str.substr(0,idx)+str.substr(idx+1);
+    for (unsigned i=0; i<str.size();) {
+        if (str[i]==' ') {
+            str.erase(str.begin()+i);
+            continue;
+        }
+        i++;
     }
 }
 
