@@ -69,7 +69,7 @@ vector<OA_CELL*> unrollModule(OA_CELL* cell,OA_MODULE* module) {
     vector<OA_CELL*> unrollCellList;
     for (unsigned i=0; i<module->CellList.size(); i++) {
         OA_CELL* template_cell=module->CellList[i];
-        OA_CELL* clone_cell=new OA_CELL(cell->Name+"."+template_cell->Name,"LSDFQM2N");
+		OA_CELL* clone_cell=new OA_CELL(cell->Name+"."+template_cell->Name,template_cell->Std_Name);
         clone_cell->IsModule=template_cell->IsModule;
         unrollCellList.push_back(clone_cell);
         for (unsigned j=0; j<template_cell->NetList.size(); j++) {
