@@ -1,5 +1,5 @@
 //
-//  gate.h
+//  pin.h
 //  OpenAccessPODEM
 //
 //  Created by lin shih-feng on 13/7/19.
