@@ -10,7 +10,7 @@
 #include <iostream>
 
 void AnalyizeLogicFunction(string &func);
-void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr) {  //clone from oa_cell_ptr to this(design) and refer gate info from std_cell_ptr
+void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr,vector<PIN*> &FFlist) {  //clone from oa_cell_ptr to this(design) and refer gate info from std_cell_ptr
     Std_Name=oa_cell_ptr->Std_Name;
     for (unsigned i=0; i<oa_cell_ptr->NetList.size(); i++) {
         AddPin(NameToPinMap[oa_cell_ptr->NetList[i].second]);
@@ -37,6 +37,7 @@ void CELL::CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* 
             pin=pin->CreatePin(Name+"."+std_cell_ptr->FFList[i]->GetName());
             pin->SetFunc(G_PPO);
             AddFFPin(pin);
+			FFlist.push_back(pin);
             
             string LogicFunction=std_cell_ptr->FFList[i]->GetLogicFunc();
             AnalyizeLogicFunction(LogicFunction);

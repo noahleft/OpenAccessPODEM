@@ -14,8 +14,12 @@ void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMa
         CELL* cell=NULL;
         cell=cell->CreateCell(oa_module_ptr->CellList[i]->Name);
         CellList.push_back(cell);
-        cell->CloneCell(oa_module_ptr->CellList[i],NameToPinMap,std_CELL_map[oa_module_ptr->CellList[i]->Std_Name]);
-        if (cell->No_Internal()!=0) {
+		vector<PIN*> FFlist;
+        cell->CloneCell(oa_module_ptr->CellList[i],NameToPinMap,std_CELL_map[oa_module_ptr->CellList[i]->Std_Name],FFlist);
+		if (FFlist.size()!=0) {
+			for (unsigned j=0; j<FFlist.size(); j++) {
+				PinList.push_back(FFlist[j]);
+			}
             for (unsigned j=0; j<cell->No_Internal(); j++) {
                 cell->InternalPin(j)->SetFunc(G_PPO);
                 AddPPO(cell->InternalPin(j));

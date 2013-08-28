@@ -23,10 +23,6 @@ private:
 public:
     
     ~CELL() {
-        for (unsigned i=0; i<FFList.size(); i++) {
-            delete FFList[i];
-            FFList[i]=NULL;
-        }
     }
     
     CELL* CreateCell(string n){
@@ -52,7 +48,7 @@ public:
     void AddFFPin(PIN* ptr) {
         FFList.push_back(ptr);
     }
-    void CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr);
+    void CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr,vector<PIN*> &FFlist);
     
     
     bool IsPIPin(string n){
