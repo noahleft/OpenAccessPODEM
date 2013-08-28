@@ -9,11 +9,8 @@
 #ifndef OpenAccessPODEM_pin_h
 #define OpenAccessPODEM_pin_h
 #include "typemu.h"
-#include <string>
-#include <vector>
 #include "OA_Design.h"
 using namespace std;
-#include <vector>
 class LIBRARY;
 
 class PIN {

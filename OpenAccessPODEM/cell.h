@@ -9,7 +9,7 @@
 #ifndef OpenAccessPODEM_cell_h
 #define OpenAccessPODEM_cell_h
 #include "pin.h"
-//CELL has many GATE
+//CELL has many PIN
 class CELL {
 private:
     string Name;
@@ -21,9 +21,7 @@ private:
     
     CELL(string n):Name(n){}
 public:
-    
-    ~CELL() {
-    }
+    ~CELL(){}
     
     CELL* CreateCell(string n){
         CELL* cell=new CELL(n);
@@ -36,20 +34,12 @@ public:
         return pin;
     }
     
-    void AddPin(PIN* ptr) {
-        GateList.push_back(ptr);
-    }
-    void AddPIPin(PIN* ptr) {
-        InputList.push_back(ptr);
-    }
-    void AddPOPin(PIN* ptr) {
-        OutputList.push_back(ptr);
-    }
-    void AddFFPin(PIN* ptr) {
-        FFList.push_back(ptr);
-    }
+    void AddPin(PIN* ptr)   {GateList.push_back(ptr);}
+    void AddPIPin(PIN* ptr) {InputList.push_back(ptr);}
+    void AddPOPin(PIN* ptr) {OutputList.push_back(ptr);}
+    void AddFFPin(PIN* ptr) {FFList.push_back(ptr);}
+
     void CloneCell(OA_CELL* oa_cell_ptr,map<string, PIN*> &NameToPinMap,CELL* std_cell_ptr,vector<PIN*> &FFlist);
-    
     
     bool IsPIPin(string n){
         for (unsigned i=0; i<InputList.size(); i++) {
@@ -68,6 +58,7 @@ public:
         }
         return NULL;
     }
+
     unsigned No_Internal(){return (unsigned)FFList.size();}
     unsigned No_Input(){return (unsigned)InputList.size();}
     unsigned No_Output(){return (unsigned)OutputList.size();}
