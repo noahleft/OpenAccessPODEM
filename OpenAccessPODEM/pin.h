@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 lin shih-feng. All rights reserved.
 //
 
-#ifndef OpenAccessPODEM_gate_h
-#define OpenAccessPODEM_gate_h
+#ifndef OpenAccessPODEM_pin_h
+#define OpenAccessPODEM_pin_h
 #include "typemu.h"
 #include <string>
 #include <vector>
