@@ -23,6 +23,9 @@ private:
 public:
     ~CELL(){}
     
+    string GetName(){return Name;}
+    string GetStdName(){return Std_Name;}
+    
     CELL* CreateCell(string n){
         CELL* cell=new CELL(n);
         return cell;

@@ -80,6 +80,207 @@ void FirstLibraryParser(vector<string> LibraryPathVector) {
     }
 }
 
+void LibraryParser();
+void FirstLibraryParser() {
+    std_PIN* pin;
+    { //AOI22M2N
+        std_CELL* cell=Library.CreateStdCell("AOI22M2N");
+        std_CELL_Map["AOI22M2N"]=cell;
+        {
+            pin=cell->CreatePin("A1");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("A2");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("B1");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("B2");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("Z");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("!((A1&A2)|(B1&B2))");
+        }
+    }
+    { //CKINVM12N
+        std_CELL* cell=Library.CreateStdCell("CKINVM12N");
+        std_CELL_Map["CKINVM12N"]=cell;
+        {
+            pin=cell->CreatePin("A");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("Z");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("!A");
+        }
+    }
+    { //CKINVM1N
+        std_CELL* cell=Library.CreateStdCell("CKINVM1N");
+        std_CELL_Map["CKINVM1N"]=cell;
+        {
+            pin=cell->CreatePin("A");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("Z");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("!A");
+        }
+    }
+    { //CKINVM32N
+        std_CELL* cell=Library.CreateStdCell("CKINVM32N");
+        std_CELL_Map["CKINVM32N"]=cell;
+        {
+            pin=cell->CreatePin("A");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("Z");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("!A");
+        }
+    }
+    { //LSDFQM2N
+        std_CELL* cell=Library.CreateStdCell("LSDFQM2N");
+        std_CELL_Map["LSDFQM2N"]=cell;
+        {
+            pin=cell->CreatePin("CK");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("D");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("SD");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("SE");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("IQ");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PPO);
+            cell->AddFFPin(pin);
+            pin->SetLogicFunc("((SE&SD)|(D&!SE))");
+        }
+        {
+            pin=cell->CreatePin("IQN");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PPO);
+            cell->AddFFPin(pin);
+            pin->SetLogicFunc("!(((SE&SD)|(D&!SE)))");
+        }
+        {
+            pin=cell->CreatePin("Q");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("IQ");
+        }
+    }
+    { //NR2M0N
+        std_CELL* cell=Library.CreateStdCell("NR2M0N");
+        std_CELL_Map["NR2M0N"]=cell;
+        {
+            pin=cell->CreatePin("A");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("B");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("Z");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("!(A|B)");
+        }
+    }
+    { //NR2M2N
+        std_CELL* cell=Library.CreateStdCell("NR2M2N");
+        std_CELL_Map["NR2M2N"]=cell;
+        {
+            pin=cell->CreatePin("A");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("B");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PI);
+            cell->AddPIPin(pin);
+            pin->SetLogicFunc("");
+        }
+        {
+            pin=cell->CreatePin("Z");
+            Library.AddPin(pin);
+            pin->SetFunc(G_PO);
+            cell->AddPOPin(pin);
+            pin->SetLogicFunc("!(A|B)");
+        }
+    }
+}
+
 void LibraryParser(string LibraryPath) {
     if (fopen(LibraryPath.c_str(), "r")==NULL) {
         cout << "Can't open library file: " << LibraryPath << endl;
@@ -183,12 +384,12 @@ void LibraryParser(string LibraryPath) {
                             
                             if ((pos=str.find("next_state"))!=string::npos) {
 								str=str.substr(pos+10);
-                                pos=str.find(';');
+                                pos=str.rfind('"');
                                 str=str.substr(0,pos);
-                                pos=str.find(':');
+                                pos=str.find('"');
                                 str=str.substr(pos+1);
                                 //cout<<str<<endl;
-								IQ_pin->SetLogicFunc(str);
+                                IQ_pin->SetLogicFunc(str);
 								IQN_pin->SetLogicFunc("!("+str+")");
 							}
 							else if ((pos=str.find("clocked_on"))!=string::npos) {//prepare for future use, need to expand library.cell format
@@ -213,6 +414,8 @@ void LibraryParser(string LibraryPath) {
     
     infile.close();
 }
+
+
 
 void CheckBracesLevel(string str,unsigned &level);
 void ReplaceWhiteSpace(string &str);

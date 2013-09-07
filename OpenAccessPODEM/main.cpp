@@ -38,6 +38,8 @@ int SetupOption(int argc, char * argv[])
                   "set the output pattern file", 0);
     option.enroll("bt", GetLongOpt::OptionalValue,
                   "set the backtrack limit", 0);
+    option.enroll("s27", GetLongOpt::NoValue,
+                  "use example circuit and library", 0);
 //    option.enroll("pattern", GetLongOpt::NoValue,
 //                  "Random Pattern Generation", 0);
     
@@ -54,6 +56,7 @@ extern void FirstCircuitParser(vector<string> OA_DesignParameter);
 extern void FirstLibraryParser(vector<string> LibraryPathVector);
 extern void CreateConfigFile();
 extern void SecondCircuitParser(LIBRARY &lib);
+extern void FirstLibraryParser();  //example:s27 use
 
 int main(int argc, char * argv[])
 {
@@ -65,26 +68,36 @@ int main(int argc, char * argv[])
     
     vector<string> OA_DesignParameter;
     vector<string> LibraryPathVector;
-    //Setup File
-    if (optind < argc) {
-        if (fopen(argv[optind], "r")==NULL) {
-            cout << "Can't open config file: " << argv[optind] << endl;
-            exit(-1);
+    
+    if (!option.retrieve("s27")) {
+        //Setup File
+        if (optind < argc) {
+            if (fopen(argv[optind], "r")==NULL) {
+                cout << "Can't open config file: " << argv[optind] << endl;
+                exit(-1);
+            }
+            else {
+                OA_DesignParameter=ConfigFileParser(argv[optind]);
+            }
         }
         else {
-            OA_DesignParameter=ConfigFileParser(argv[optind]);
+            cout << "config file missing" << endl;
+            option.usage();
+            return -1;
         }
+        cout<<"Start parsing input file"<<endl;
+        LibraryPathVector.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
+        
+        FirstCircuitParser(OA_DesignParameter);
+        FirstLibraryParser(LibraryPathVector);
+        SecondCircuitParser(Library);
     }
     else {
-        cout << "config file missing" << endl;
-        option.usage();
-        return -1;
+        OA_DesignParameter={"./designLib","designLib","s27","layout","./l90sprvt_typ.lib"};
+        FirstCircuitParser(OA_DesignParameter);
+        FirstLibraryParser();
+        SecondCircuitParser(Library);
     }
-    cout<<"Start parsing input file"<<endl;
-    LibraryPathVector.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
-    FirstCircuitParser(OA_DesignParameter);
-    FirstLibraryParser(LibraryPathVector);
-	SecondCircuitParser(Library);
     
     Design.Levelize();
     Design.Check_Levelization();
