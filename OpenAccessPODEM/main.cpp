@@ -10,10 +10,11 @@
 #include "GetLongOpt.h"
 #include "design.h"
 #include "library.h"
- 
+#include "ReadPattern.h"
 GetLongOpt option;
 LIBRARY Library;
 DESIGN Design;
+PATTERN Pattern;
 
 int SetupOption(int argc, char * argv[])
 {
@@ -103,7 +104,7 @@ int main(int argc, char * argv[])
     Design.Check_Levelization();
     
     if (option.retrieve("logicsim")) {
-        //
+        Design.InitPattern("");
     }
     
     return 0;

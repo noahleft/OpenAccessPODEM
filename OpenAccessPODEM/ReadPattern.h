@@ -9,18 +9,20 @@
 #ifndef __OpenAccessPODEM__ReadPattern__
 #define __OpenAccessPODEM__ReadPattern__
 
-#include "pin.h"
+#include "module.h"
 #include <fstream>
 
 struct ScanChain {
     string Name;
-    vector<PIN*> pinlist;
+    vector<pair<PIN*, PIN*> > SeqPairlist;
+    
+    ScanChain(string n):Name(n){}
 };
 
 class PATTERN {
     private:
         ifstream patterninput;
-        vector<pair<PIN*, PIN*> > SequentialList; //when clock trigger,load data from first to second
+        vector<pair<PIN*, PIN*> > SequentialList; //when clock trigger,load data from first to second (PPO,PPI)
         vector<PIN*> PIlist;
         vector<ScanChain*> ScanChainlist;
     public:
@@ -32,6 +34,11 @@ class PATTERN {
             }
         }
     
+        void Initialize(MODULE*);
+    
+        void AddSeqPair(pair<PIN*, PIN*> seq_pair){
+            SequentialList.push_back(seq_pair);
+        }
 };
 
 #endif /* defined(__OpenAccessPODEM__ReadPattern__) */

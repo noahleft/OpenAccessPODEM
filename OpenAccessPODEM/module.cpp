@@ -9,6 +9,9 @@
 #include "module.h"
 #include <list>
 #include <iostream>
+#include "ReadPattern.h"
+extern PATTERN Pattern;
+
 void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMap,map<string, std_CELL*> &std_CELL_map) {
     for (unsigned i=0; i<oa_module_ptr->CellList.size(); i++) {
         CELL* cell=NULL;
@@ -28,6 +31,15 @@ void MODULE::CloneModule(OA_MODULE* oa_module_ptr,map<string, PIN*> &NameToPinMa
                 cell->OutputPin(j)->SetFunc(G_PPI);
                 AddPPI(cell->OutputPin(j));
             }
+            //pattern seq pair
+            for (unsigned j=0; j<cell->No_Output(); j++) {
+                PIN* PPI_pin=cell->OutputPin(j);
+                PIN* PPO_pin=NULL;
+                if (PPI_pin->GetLogicFunc().compare("@IQ")==0) { PPO_pin=cell->InternalPin(0); }
+                else { PPO_pin=cell->InternalPin(1); }
+                Pattern.AddSeqPair(pair<PIN*, PIN*>(PPO_pin,PPI_pin));
+            }
+            //
         }
     }
     

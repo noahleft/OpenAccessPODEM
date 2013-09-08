@@ -52,6 +52,14 @@ public:
     
     void Levelize();
     void Check_Levelization();
+    
+    unsigned No_Pin(){return (unsigned)PinList.size();}
+    unsigned No_PI(){return (unsigned)PIlist.size();}
+    unsigned No_PO(){return (unsigned)POlist.size();}
+    unsigned No_PPI(){return (unsigned)PPIlist.size();}
+    unsigned No_PPO(){return (unsigned)PPOlist.size();}
+    
+    PIN* PIPin(unsigned idx){return PIlist[idx];}
 };
 
 #endif
