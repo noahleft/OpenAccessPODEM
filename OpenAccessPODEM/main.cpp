@@ -106,7 +106,7 @@ int main(int argc, char * argv[])
     if (option.retrieve("logicsim")) {
         Design.InitPattern("");
     }
-    
+    cout<<"end of program"<<endl;
     return 0;
 }
 
