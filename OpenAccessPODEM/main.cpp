@@ -59,6 +59,8 @@ extern void CreateConfigFile();
 extern void SecondCircuitParser(LIBRARY &lib);
 extern void FirstLibraryParser();  //example:s27 use
 
+extern int Example_main_s27();
+
 int main(int argc, char * argv[])
 {
     int optind = SetupOption(argc, argv);
@@ -70,35 +72,32 @@ int main(int argc, char * argv[])
     vector<string> OA_DesignParameter;
     vector<string> LibraryPathVector;
     
-    if (!option.retrieve("s27")) {
-        //Setup File
-        if (optind < argc) {
-            if (fopen(argv[optind], "r")==NULL) {
-                cout << "Can't open config file: " << argv[optind] << endl;
-                exit(-1);
-            }
-            else {
-                OA_DesignParameter=ConfigFileParser(argv[optind]);
-            }
+    if (option.retrieve("s27")) {
+        Example_main_s27();
+        return 0;
+    }
+    
+    //Setup File
+    if (optind < argc) {
+        if (fopen(argv[optind], "r")==NULL) {
+            cout << "Can't open config file: " << argv[optind] << endl;
+            exit(-1);
         }
         else {
-            cout << "config file missing" << endl;
-            option.usage();
-            return -1;
+            OA_DesignParameter=ConfigFileParser(argv[optind]);
         }
-        cout<<"Start parsing input file"<<endl;
-        LibraryPathVector.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
-        
-        FirstCircuitParser(OA_DesignParameter);
-        FirstLibraryParser(LibraryPathVector);
-        SecondCircuitParser(Library);
     }
     else {
-        OA_DesignParameter={"./designLib","designLib","s27","layout","./l90sprvt_typ.lib"};
-        FirstCircuitParser(OA_DesignParameter);
-        FirstLibraryParser();
-        SecondCircuitParser(Library);
+        cout << "config file missing" << endl;
+        option.usage();
+        return -1;
     }
+    cout<<"Start parsing input file"<<endl;
+    LibraryPathVector.assign(OA_DesignParameter.begin()+4,OA_DesignParameter.end());
+    
+    FirstCircuitParser(OA_DesignParameter);
+    FirstLibraryParser(LibraryPathVector);
+    SecondCircuitParser(Library);
     
     Design.Levelize();
     Design.Check_Levelization();
