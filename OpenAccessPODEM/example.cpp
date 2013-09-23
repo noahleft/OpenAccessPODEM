@@ -37,6 +37,7 @@ int Example_main_s27()
     
     if (option.retrieve("logicsim")) {
         Design.InitPattern("");
+        Design.LogicSimVectors();
     }
     cout<<"end of program"<<endl;
     return 0;

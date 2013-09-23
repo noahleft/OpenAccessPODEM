@@ -26,6 +26,8 @@ public:
     void InitPattern(const char *pattern){
         Pattern.Initialize(TopModule);
     }
+    
+    void LogicSimVectors();
 
 };
 
