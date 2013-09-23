@@ -56,6 +56,9 @@ public:
     void ResetCount(){Count=0;}
     unsigned GetCount(){return Count;}
     
+    void SetValue(VALUE v){Value=v;}
+    VALUE GetValue(){return Value;}
+    
 };
 typedef PIN std_PIN;
 

@@ -21,8 +21,11 @@ private:
     vector<PIN*> PPIlist;
     vector<PIN*> PPOlist;
     
+    list<PIN*>* Queue;
+    unsigned MaxLevel;
+    
 public:
-    MODULE(string n):Name(n){}
+    MODULE(string n):Name(n),MaxLevel(0){}
     ~MODULE(){
         for (unsigned i=0; i<PinList.size(); i++) {
             delete PinList[i];
@@ -60,6 +63,23 @@ public:
     unsigned No_PPO(){return (unsigned)PPOlist.size();}
     
     PIN* PIPin(unsigned idx){return PIlist[idx];}
+    PIN* POPin(unsigned idx){return POlist[idx];}
+    PIN* Pin(unsigned idx){return PinList[idx];}
+    
+    void Schedule(PIN* gptr)
+    {
+        Queue[gptr->GetLevel()].push_back(gptr);
+    }
+    void InitializeQueue();
+    void SetMaxLevel();
+    //
+    void LogicSimVectors();
+    void LogicSim();
+    void SchedulePI();
+    void PrintIO();
+    void ScheduleFanout(PIN*);
+    VALUE Evaluate(PIN*);
+    //
 };
 
 #endif

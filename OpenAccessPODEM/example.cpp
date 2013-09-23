@@ -34,6 +34,7 @@ int Example_main_s27()
     
     Design.Levelize();
     Design.Check_Levelization();
+    Design.InitializeQueue();
     
     if (option.retrieve("logicsim")) {
         Design.InitPattern("");

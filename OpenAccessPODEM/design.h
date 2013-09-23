@@ -27,8 +27,8 @@ public:
         Pattern.Initialize(TopModule);
     }
     
-    void LogicSimVectors();
-
+    void LogicSimVectors(){TopModule->LogicSimVectors();}
+    void InitializeQueue(){TopModule->InitializeQueue();}
 };
 
 #endif

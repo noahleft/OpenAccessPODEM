@@ -35,6 +35,10 @@ class PATTERN {
         }
     
         void Initialize(MODULE*);
+        bool eof(){
+            return false;
+        }
+        void ReadNextPattern();
     
         void AddSeqPair(pair<PIN*, PIN*> seq_pair){
             SequentialList.push_back(seq_pair);

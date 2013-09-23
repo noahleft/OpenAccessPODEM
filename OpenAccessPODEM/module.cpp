@@ -140,3 +140,16 @@ void MODULE::Check_Levelization() {
     }
 }
 
+void MODULE::InitializeQueue() {
+    SetMaxLevel();
+    Queue = new list<PIN*>[MaxLevel + 1];
+    return;
+}
+
+void MODULE::SetMaxLevel() {
+    for (unsigned i = 0;i < No_Pin();i++) {
+        if (Pin(i)->GetLevel() > MaxLevel) {
+            MaxLevel = Pin(i)->GetLevel();
+        }
+    }
+}
